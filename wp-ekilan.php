@@ -50,12 +50,12 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 				?><h4 class="emprendedores-preguntas-mensaje"><?php _e("Eskerrik asko! Gracias por completar el formulario.", "wp-ekilan"); ?></h4><?php
 				
 				//Guardar datos en CSV
-				$f=fopen(__DIR__."/csv/autodiagnostico.csv", "a+");
+				/*$f=fopen(__DIR__."/csv/autodiagnostico.csv", "a+");
 				$csv[] = date("Y-m-d H:i:s");
 				$csv[] = $current_lang;
 				foreach($responses as $response) $csv[] = $response;
 				fputcsv($f, $csv);
-				fclose($f);
+				fclose($f);*/
 				
 				//Enviamos email de aviso a los admin
 				$headers = array('Content-Type: text/html; charset=UTF-8');
