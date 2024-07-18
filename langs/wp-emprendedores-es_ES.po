@@ -1,0 +1,442 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: azti-descargas\n"
+"POT-Creation-Date: 2024-07-18 14:31+0200\n"
+"PO-Revision-Date: 2024-07-18 14:31+0200\n"
+"Last-Translator: \n"
+"Language-Team: jorge@enutt.net\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-KeywordsList: _;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../admin.php:6
+msgid "Configuración"
+msgstr ""
+
+#: ../admin.php:12
+msgid ""
+"Configuración de cuestionario de Autodiagnóstico en competencias "
+"emprendedoras"
+msgstr ""
+
+#: ../admin.php:13
+msgid "Exportar a CSV"
+msgstr ""
+
+#: ../admin.php:15
+msgid "Datos guardados correctamente."
+msgstr ""
+
+#: ../admin.php:22
+msgid "Emails a los que avisar de la descarga"
+msgstr ""
+
+#: ../admin.php:22
+msgid "Separados por comas"
+msgstr ""
+
+#: ../admin.php:25
+msgid "Aviso legal"
+msgstr ""
+
+#: ../admin.php:29
+msgid "Guardar"
+msgstr ""
+
+#: ../custom_posts.php:28 ../custom_posts.php:167
+msgid "Add file"
+msgstr ""
+
+#: ../custom_posts.php:80
+msgid "Drag and drop"
+msgstr ""
+
+#: ../custom_posts.php:105
+msgid "Write here the location"
+msgstr ""
+
+#: ../custom_posts.php:106
+msgid "Search location"
+msgstr ""
+
+#: ../custom_posts.php:144
+msgid "Add image"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:8
+msgid "Preguntas"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:9
+msgid "Pregunta"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:10
+msgid "Añadir nueva"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:11 ../emprendedores-preguntas.php:23
+msgid "Añadir nueva pregunta"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:12
+msgid "Editar pregunta"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:13
+msgid "Nueva pregunta"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:14
+msgid "Todas las preguntas"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:15
+msgid "Ver pregunta"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:16
+msgid "Buscar preguntass"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:17
+msgid "Pregunta no encontrada"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:18
+msgid "Pregunta no encontrada en la papelera"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:19
+msgid "Preguntas Autodiagnóstico"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:48 ../emprendedores-preguntas.php:58
+msgid "Secciones"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:49 ../emprendedores-preguntas.php:154
+msgid "Sección"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:50
+msgid "Buscar secciones"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:51
+msgid "Todas las secciones"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:52 ../emprendedores-preguntas.php:53
+msgid "Pariente sección"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:54
+msgid "Editar sección"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:55
+msgid "Actualizar sección"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:56
+msgid "Añadir sección"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:57
+msgid "Nueva sección"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:78
+msgid "Texto resumen PDF"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:84
+msgid "Enlaces resumen PDF"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:116
+msgid "Respuesta A"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:117
+msgid "Valor respuesta A"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:123
+msgid "Respuesta B"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:124
+msgid "Valor respuesta B"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:130
+msgid "Respuesta C"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:131
+msgid "Valor respuesta C"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:143
+msgid "Respuestas"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:183
+msgid "Mostrar todas las secciones"
+msgstr ""
+
+#: ../wp-emprendedores.php:50
+msgid "Eskerrik asko! Gracias por completar el formulario."
+msgstr ""
+
+#: ../wp-emprendedores.php:72
+msgid "Descargar informe"
+msgstr ""
+
+#: ../wp-emprendedores.php:73
+msgid ""
+"Si no visualiza correctamente el informe en formato PDF en su navegador, "
+"aplicación de ordenador, tablet, dispositivo móvil, etc., recomendamos que "
+"instale el programa Adobe Acrobat Reader (Software gratuito para visualizar "
+"documentos en formato PDF). Puede descargarlo en: <a href='https://get.adobe."
+"com/es/reader/' target='_blank'>https://get.adobe.com/es/reader/</a>."
+msgstr ""
+
+#: ../wp-emprendedores.php:75
+msgid ""
+"<table border=\"0\" width=\"600\" cellpadding=\"10\" align=\"center\" "
+"bgcolor=\"ffffff\">\n"
+"\t\t\t\t<tbody>\n"
+"\t\t\t\t<tr><td><img src=\""
+msgstr ""
+
+#: ../wp-emprendedores.php:99
+msgid ""
+"Aquí tienes tu informe de \"Autodiagnóstico en competencias emprendedoras\""
+msgstr ""
+
+#: ../wp-emprendedores.php:153
+msgid ""
+"Si quieres que te enviemos el informe por email, rellena este campo con tu "
+"email."
+msgstr ""
+
+#: ../wp-emprendedores.php:163
+msgid "Continuar"
+msgstr ""
+
+#: ../wp-emprendedores.php:163
+msgid "Enviar"
+msgstr ""
+
+#: ../wp-emprendedores.php:341
+msgid ""
+"En función de las respuestas obtenidas, de acuerdo al Marco Europeo de "
+"Competencias de Emprendimiento (EntreComp), te damos la enhorabuena por los "
+"resultados:"
+msgstr ""
+
+#: ../wp-emprendedores.php:342
+msgid ""
+"En función de las respuestas obtenidas, de acuerdo al Marco Europeo de "
+"Competencias de Emprendimiento (EntreComp), puedes mejorar las habilidades "
+"medidas en los cuatro grupos principales:"
+msgstr ""
+
+#: ../wp-emprendedores.php:343
+msgid ""
+"En función de las respuestas obtenidas, de acuerdo al Marco Europeo de "
+"Competencias de Emprendimiento (EntreComp), recomendamos que mejores las "
+"habilidades medidas en los cuatro grupos principales:"
+msgstr ""
+
+#: ../wp-emprendedores.php:347
+msgid ""
+"Enhorabuena por tus habilidades emprendedoras en la parte de ideas y "
+"oportunidades. Sácale todo el potencial que puedas a este conjunto de "
+"habilidades."
+msgstr ""
+
+#: ../wp-emprendedores.php:348
+msgid ""
+"De acuerdo a los resultados obtenidos en el primer grupo de preguntas, "
+"puedes mejorar tus habilidades emprendedoras en la parte de ideas y "
+"oportunidades."
+msgstr ""
+
+#: ../wp-emprendedores.php:349
+msgid ""
+"De acuerdo a los resultados obtenidos en el primer grupo de preguntas, "
+"recomendamos que mejores tus habilidades emprendedoras en la parte de ideas "
+"y oportunidades."
+msgstr ""
+
+#: ../wp-emprendedores.php:353
+msgid ""
+"Enhorabuena por tus habilidades emprendedoras en el segundo grupo de "
+"respuestas, en del área de recursos."
+msgstr ""
+
+#: ../wp-emprendedores.php:354
+msgid ""
+"En el segundo grupo de habilidades emprendedoras en el área de recursos "
+"tienes un potencial que con experiencia y formación seguro que vas a mejorar."
+msgstr ""
+
+#: ../wp-emprendedores.php:355
+msgid ""
+"De acuerdo a los resultados obtenidos en el segundo grupo de preguntas, "
+"recomendamos que mejores tus habilidades emprendedoras en la parte de "
+"recursos."
+msgstr ""
+
+#: ../wp-emprendedores.php:359
+msgid ""
+"Enhorabuena por tus habilidades emprendedoras para pasar a la acción, "
+"minimizando riesgos. Sácale todo el potencial que puedas a este conjunto de "
+"habilidades."
+msgstr ""
+
+#: ../wp-emprendedores.php:360
+msgid ""
+"En el tercer grupo de habilidades emprendedoras para pasar a la acción, "
+"minimizando riesgos, tienes un potencial que con experiencia y formación "
+"puedes mejorar."
+msgstr ""
+
+#: ../wp-emprendedores.php:361
+msgid ""
+"De acuerdo a los resultados obtenidos en el tercer grupo de preguntas, "
+"recomendamos que mejores tus habilidades emprendedoras para pasar a la "
+"acción, minimizando riesgos."
+msgstr ""
+
+#: ../wp-emprendedores.php:365
+msgid ""
+"Enhorabuena por tus habilidades para emprender en equipo. Sácale todo el "
+"potencial que puedas a este conjunto de habilidades y mucho ánimo con tus "
+"proyectos colaborativos."
+msgstr ""
+
+#: ../wp-emprendedores.php:366
+msgid ""
+"En el cuarto grupo de habilidades relacionadas con la predisposición para "
+"emprendimiento colectivo, tienes un potencial interesante que puedes mejorar."
+msgstr ""
+
+#: ../wp-emprendedores.php:367
+msgid ""
+"Tus habilidades emprendedoras en la parte de predisposición para "
+"emprendimiento colectivo se pueden mejorar. ¡Ánimo con ello!"
+msgstr ""
+
+#: ../wp-emprendedores.php:400 ../wp-emprendedores.php:485
+msgid "Cuestionario de \"Autodiagnóstico en competencias emprendedoras\""
+msgstr ""
+
+#: ../wp-emprendedores.php:401
+msgid ""
+"Una vez cumplimentado el test de autodiagnóstico de competencias para "
+"emprender basado en el marco europeo de competencias de emprendimiento "
+"(EntreComp), mostramos las respuestas que has elegido y un pequeño resumen "
+"de la información basada en el ámbito del emprendimiento en Europa."
+msgstr ""
+
+#: ../wp-emprendedores.php:459
+msgid ""
+"Conclusiones del cuestionario de \"Autodiagnóstico en competencias "
+"emprendedoras\":"
+msgstr ""
+
+#: ../wp-emprendedores.php:460
+msgid ""
+"Este informe presenta el perfil como persona emprendedora en base a las "
+"respuestas al cuestionario de autodiagnóstico online cumplimentado."
+msgstr ""
+
+#: ../wp-emprendedores.php:461
+msgid ""
+"Las competencias emprendedoras se refieren a los análisis de ideas, "
+"oportunidades, recursos, habilidades y predisposición para emprender de "
+"forma individual o en equipo."
+msgstr ""
+
+#: ../wp-emprendedores.php:462
+msgid ""
+"Este perfil emprendedor se basa en la estructura del Marco Europeo de "
+"Competencias de Emprendimiento (EntreComp)."
+msgstr ""
+
+#: ../wp-emprendedores.php:480
+msgid ""
+"Este perfil es el resumen del conjunto de respuestas aportadas dentro del "
+"Marco Europeo de Competencias de Emprendimiento (EntreComp). Recomendamos "
+"contrastar estas respuestas con la documentación complementaria que las "
+"entidades que colaboran en este informe facilitan para completar y mejorar "
+"las aptitudes emprendedoras."
+msgstr ""
+
+#: ../wp-emprendedores.php:481
+msgid "Gracias por participar."
+msgstr ""
+
+#, php-format
+#~ msgid ""
+#~ "Gracias por solicitar el \"%s\". En breve recibirás un email en la "
+#~ "dirección que nos has indicado."
+#~ msgstr ""
+#~ "Eskerrik asko \"%s\" eskatzeagatik. Laster mezu elektroniko bat jasoko "
+#~ "duzu adierazi diguzun helbidean."
+
+#~ msgid ""
+#~ "Hay problemas para establecer si eres o no un robot. Por favor, inténtalo "
+#~ "dentro de un rato."
+#~ msgstr ""
+#~ "Robota zaren ala ez erabakitzeko arazoak daude. Mesedez, saiatu denbora "
+#~ "tarte batean."
+
+#~ msgid "Nombre"
+#~ msgstr "Izena"
+
+#~ msgid "Apellido"
+#~ msgstr "Abizena"
+
+#~ msgid "Email"
+#~ msgstr "Emaila"
+
+#~ msgid "Empresa"
+#~ msgstr "Enpresa"
+
+#~ msgid "Cargo"
+#~ msgstr "Kargua"
+
+#~ msgid "Sector"
+#~ msgstr "Sektorea"
+
+#~ msgid "País"
+#~ msgstr "Herrialdea"
+
+#~ msgid "Provincia"
+#~ msgstr "Probintzia"
+
+#~ msgid ""
+#~ "Acepto la <a href='/politica-de-privacidad/' target='_blank'>politica de "
+#~ "privacidad</a>."
+#~ msgstr ""
+#~ "<a href='/eu/pribatutasun-politika/' target='_blank'>Pribatutasun-"
+#~ "politika</a> onartzen dut."
+
+#~ msgid "Acepto recibir por email comunicaciones de AZTI."
+#~ msgstr "Onartzen dut posta elektronikoz jasotzea AZTIren komunikazioak."
+
+#~ msgid "Solicitar"
+#~ msgstr "Eskatu"
