@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: Autodiagnóstico en competencias emprendedoras
+ * Plugin Name: EKILAN - Autodiagnóstico en competencias emprendedoras
  * Description: Shortcode para montar un formulario de autodiagnóstico en competencias emprendedoras [wp-ekilan]
  * Version:     1.0
  * Author:      jorge@enutt.net
@@ -72,9 +72,9 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 				?><a class="download" href="<?=plugin_dir_url(__FILE__).'pdf/'.$filename;?>" target="_blank" rel="noopener"><?php _e("Descargar informe", 'wp-ekilan'); ?></a>
 				<p style="color: #000;"><?php _e("Si no visualiza correctamente el informe en formato PDF en su navegador, aplicación de ordenador, tablet, dispositivo móvil, etc., recomendamos que instale el programa Adobe Acrobat Reader (Software gratuito para visualizar documentos en formato PDF). Puede descargarlo en: <a href='https://get.adobe.com/es/reader/' target='_blank'>https://get.adobe.com/es/reader/</a>.", "wp-ekilan"); ?></p>
 				<?php
-				$message = __('<table border="0" width="600" cellpadding="10" align="center" bgcolor="ffffff">
+				$message = sprintf(__('<table border="0" width="600" cellpadding="10" align="center" bgcolor="ffffff">
 				<tbody>
-				<tr><td><img src="'.plugin_dir_url( __FILE__ ).'images/asle-300x98.jpg" alt=""></td></tr>
+				<tr><td><img src="%simages/asle-300x98.jpg" alt=""></td></tr>
 				<tr>
 				<td><span style="font-family: Arial; font-size: medium;">Hola,</span></td>
 				</tr>
@@ -91,7 +91,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 				<td align="center"><span style="font-family: Arial; font-size: medium;"><a style="color: #000;" href="https://ekilan.asle.es/">ekilan.asle.es</a></span></td>
 				</tr>
 				</tbody>
-				</table>', 'wp-ekilan');
+				</table>', 'wp-ekilan'), plugin_dir_url( __FILE__ ));
 
 
 				//Enviamos email de aviso al usuario
@@ -182,7 +182,6 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
   	
   	}
   	
-  	
   	#emprendedores-preguntas-form .legal {
   		padding: 10px;
   		height: 50px;
@@ -195,11 +194,11 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
   		margin-top: 30px;
   	}
   	
-  	
   	#emprendedores-preguntas-form input[type=submit] {
   		margin-top: 30px;
   	
   	}
+
 		#emprendedores-preguntas a.download {
 			display: inline-block;
 			margin: 10px auto;
@@ -333,7 +332,7 @@ add_shortcode('emprendedores-preguntas', 'wp_ekilan_shortcode');
 function wp_ekilan_generate_pdf($responses) {
 	require_once __DIR__ . '/vendor/autoload.php';
 
-	$filename = "cuestionario-autodiagnostico-competencias-emprendedoras-".hash("md5", implode("", $responses).date("YmdHis")).".pdf";
+	$filename = "EKILAN-".__("cuestionario-autodiagnostico-competencias-emprendedoras", 'wp-ekilan')."-".hash("md5", implode("", $responses).date("YmdHis")).".pdf";
 
 	$conclusions = [ 
 		//Generales
