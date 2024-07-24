@@ -113,21 +113,22 @@ add_action( 'edited_test', 'emprendedores_preguntas_test_save_fields', 10, 2);
 // ------------------------------------------------
 function get_emprendedores_preguntas_custom_fields () {
 	$fields = array(
-		'respuesta-a' => array ('titulo' => __( 'Respuesta A', 'wp-ekilan' ), 'tipo' => 'textarea'),
+		'separator-a' => array('tipo' => 'separator', 'titulo' => __( 'Respuesta A', 'wp-ekilan' )),
+		'respuesta-a' => array ('titulo' => __( 'Texto respuesta A', 'wp-ekilan' ), 'tipo' => 'textarea'),
 		'valor-a' => array ('titulo' => __( 'Valor respuesta A', 'wp-ekilan' ), 'tipo' => 'select', 'valores' => [
 			"1" => 1,
 			"2" => 2,
 			"3" => 3
 		]),
-		'separator-a' => array('tipo' => 'separator'),
-		'respuesta-b' => array ('titulo' => __( 'Respuesta B', 'wp-ekilan' ), 'tipo' => 'textarea'),
+		'separator-b' => array('tipo' => 'separator', 'titulo' => __( 'Respuesta B', 'wp-ekilan' )),
+		'respuesta-b' => array ('titulo' => __( 'Texto respuesta B', 'wp-ekilan' ), 'tipo' => 'textarea'),
 		'valor-b' => array ('titulo' => __( 'Valor respuesta B', 'wp-ekilan' ), 'tipo' => 'select', 'valores' => [
 			"1" => 1,
 			"2" => 2,
 			"3" => 3
 		]),
-		'separator-b' => array('tipo' => 'separator'),
-		'respuesta-c' => array ('titulo' => __( 'Respuesta C', 'wp-ekilan' ), 'tipo' => 'textarea'),
+		'separator-c' => array('tipo' => 'separator', 'titulo' => __( 'Respuesta C', 'wp-ekilan' )),
+		'respuesta-c' => array ('titulo' => __( 'Texto respuesta C', 'wp-ekilan' ), 'tipo' => 'textarea'),
 		'valor-c' => array ('titulo' => __( 'Valor respuesta C', 'wp-ekilan' ), 'tipo' => 'select', 'valores' => [
 			"1" => 1,
 			"2" => 2,

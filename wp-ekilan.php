@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: EKILAN - Autodiagnóstico en competencias emprendedoras
- * Description: Shortcode para montar un formulario de autodiagnóstico en competencias emprendedoras [wp-ekilan]
+ * Description: Shortcode para montar un formulario de autodiagnóstico en competencias emprendedoras [emprendedores-preguntas]
  * Version:     1.0
  * Author:      jorge@enutt.net
  * Author URI:  https://enutt.net/
