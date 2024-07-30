@@ -11,9 +11,15 @@ function wp_ekilan_admin_page() {
   $settings = array( 'media_buttons' => true, 'quicktags' => true, 'textarea_rows' => 15 ); ?>
   <h1><?php _e("Configuración de cuestionario de Autodiagnóstico en competencias emprendedoras", 'wp-ekilan'); ?></h1>
   <a href="<?php echo get_admin_url(); ?>options-general.php?page=wp-ekilan&csv=true" class="button"><?php _e("Exportar a CSV", 'wp-ekilan'); ?></a>
-  <?php if(isset($_REQUEST['send']) && $_REQUEST['send'] != '') { 
+  <?php print_r ($_REQUEST); if(isset($_REQUEST['send']) && $_REQUEST['send'] != '') { 
+    
     ?><p style="border: 1px solid green; color: green; text-align: center;"><?php _e("Datos guardados correctamente.", 'wp-ekilan'); ?></p><?php
     update_option('_wp_ekilan_emails', $_POST['_wp_ekilan_emails']);
+    update_option('_wp_ekilan_client_id', $_POST['_wp_ekilan_client_id']);
+    update_option('_wp_ekilan_client_secret', $_POST['_wp_ekilan_client_secret']);
+    update_option('_wp_ekilan_redirect_url', $_POST['_wp_ekilan_redirect_url']);
+    update_option('_wp_ekilan_scope', $_POST['_wp_ekilan_scope']);
+
     foreach ($langs as $label => $lang) {
       update_option('_wp_ekilan_aviso_legal_'.$label, $_POST['_wp_ekilan_aviso_legal_'.$label]);
     }
@@ -25,10 +31,90 @@ function wp_ekilan_admin_page() {
       <b><?php _e("Aviso legal", 'wp-ekilan'); ?> <?php echo strtoupper($lang); ?>:</b><br/>  
       <?php wp_editor( stripslashes(get_option("_wp_ekilan_aviso_legal_".$label)), '_wp_ekilan_aviso_legal_'.$label, $settings ); ?><br/>
     <?php } ?>
+
+
+
+    <hr/>
+    <b><?php _e("Client ID", 'wp-ekilan'); ?>:</b><br/>
+    <input type="text" name="_wp_ekilan_client_id" value="<?php echo get_option("_wp_ekilan_client_id"); ?>" style="width: calc(100% - 20px);" /><br/><br/>
+    <b><?php _e("Client Secret", 'wp-ekilan'); ?>:</b><br/>
+    <input type="text" name="_wp_ekilan_client_secret" value="<?php echo get_option("_wp_ekilan_client_secret"); ?>" style="width: calc(100% - 20px);" /><br/><br/>
+    <b><?php _e("Redirect URL", 'wp-ekilan'); ?>:</b><br/>
+    <input type="text" name="_wp_ekilan_redirect_url" value="<?php echo get_option("_wp_ekilan_redirect_url"); ?>" style="width: calc(100% - 20px);" /><br/><br/>
+    
+    <b><?php _e("Scope", 'wp-ekilan'); ?>:</b><br/>
+    <input type="text" name="_wp_ekilan_scope" value="<?php echo get_option("_wp_ekilan_scope"); ?>" style="width: calc(100% - 20px);" /><br/><br/>
+
     <br/><br/>
     <input type="submit" name="send" class="button button-primary" value="<?php _e("Guardar", 'wp-ekilan'); ?>" />
   </form>
+  <hr/>
+
+  <a class="button" href="https://accounts.zoho.eu/oauth/v2/auth?scope=<?php echo get_option('_wp_ekilan_scope'); ?>&client_id=<?php echo get_option("_wp_ekilan_client_id"); ?>&response_type=code&access_type=online&redirect_uri=<?php echo get_option("_wp_ekilan_redirect_url"); ?>">Solicitar TOKEN</a><br/>
+  Token: <?php echo get_option("_wp_ekilan_code"); ?><br/>
+  Location: <?php echo get_option("_wp_ekilan_location"); ?><br/>
+  Account-server: <?php echo get_option("_wp_ekilan_accounts-server"); ?><br/><br/>
+
+  TEST:<br/>
+  
+  Access_token: <?php echo get_option('_wp_ekilan_access_token'); ?><br/>
+  Scope: <?php echo get_option('_wp_ekilan_scope'); ?><br/>
+  API_domain: <?php echo get_option('_wp_ekilan_api_domain'); ?><br/>
+  Token_type: <?php echo get_option('_wp_ekilan_token_type'); ?><br/>
+
+
+  
+  curl "<?php echo get_option('_wp_ekilan_api_domain'); ?>/crm/v2/Leads" -X GET -H "Authorization: Zoho-oauthtoken <?php echo get_option('_wp_ekilan_access_token'); ?>"
+
+
+  https://www.zoho.com/crm/developer/docs/api/v2/get-records.html
+
 <?php }
+
+
+add_action( 'wp_ajax_zohocrm', 'wp_ekilan_action_zohocrm' );
+function wp_ekilan_action_zohocrm() {
+  update_option('_wp_ekilan_code', $_GET['code']);
+  update_option('_wp_ekilan_location', $_GET['location']);
+  update_option('_wp_ekilan_accounts-server', $_GET['accounts-server']);
+
+
+  $link = get_option("_wp_ekilan_accounts-server")."/oauth/v2/token";
+  $payload = [
+    "grant_type" => "authorization_code",
+    "client_id" => get_option("_wp_ekilan_client_id"),
+    "client_secret" => get_option("_wp_ekilan_client_secret"),
+    "redirect_uri" => get_option("_wp_ekilan_redirect_url"),
+    "code" => get_option("_wp_ekilan_code")
+  ];
+  $response = wp_ekilan_curl_call($link, 'POST', $payload);
+  update_option('_wp_ekilan_access_token', $response->access_token);
+  //update_option('_wp_ekilan_scope', $response->scope);
+  update_option('_wp_ekilan_api_domain', $response->api_domain);
+  update_option('_wp_ekilan_token_type', $response->token_type);
+  wp_redirect ("https://pruebas.enuttisworking.com/wp-admin/edit.php?post_type=emprendedor-pregunta&page=wp-ekilan");
+  wp_die();
+}
+
+
+function wp_ekilan_curl_call($link, $request = 'GET', $payload = false) {
+  $curl = curl_init();
+  curl_setopt($curl, CURLOPT_URL, $link);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+  $response = curl_exec($curl);
+  $json = json_decode($response);
+  $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+  curl_close($curl);
+  if (in_array($httpcode, array(200, 201, 204))) {
+    return $json;
+  } else {
+    return false;
+  }
+}
+
+
 
 //Exportar a CSV ---------------------
 function wp_ekilan_export_to_CSV() {

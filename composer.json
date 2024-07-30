@@ -1,6 +1,6 @@
 {
     "require": {
         "mpdf/mpdf": "^8.2",
-        "zohocrm/php-sdk": "3.0.0"
+        "zohocrm/php-sdk-2.0": "3.0.0"
     }
 }
