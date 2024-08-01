@@ -11,7 +11,7 @@ function wp_ekilan_admin_page() {
   $settings = array( 'media_buttons' => true, 'quicktags' => true, 'textarea_rows' => 15 ); ?>
   <h1><?php _e("Configuración de cuestionario de Autodiagnóstico en competencias emprendedoras", 'wp-ekilan'); ?></h1>
   <a href="<?php echo get_admin_url(); ?>options-general.php?page=wp-ekilan&csv=true" class="button"><?php _e("Exportar a CSV", 'wp-ekilan'); ?></a>
-  <?php print_r ($_REQUEST); if(isset($_REQUEST['send']) && $_REQUEST['send'] != '') { 
+  <?php if(isset($_REQUEST['send']) && $_REQUEST['send'] != '') { 
     
     ?><p style="border: 1px solid green; color: green; text-align: center;"><?php _e("Datos guardados correctamente.", 'wp-ekilan'); ?></p><?php
     update_option('_wp_ekilan_emails', $_POST['_wp_ekilan_emails']);
@@ -63,13 +63,50 @@ function wp_ekilan_admin_page() {
   Token_type: <?php echo get_option('_wp_ekilan_token_type'); ?><br/>
 
 
+  <?php 
+
+  $payload['data'][] = [
+    "Last_Name" => "Monclus",
+    "First_Name" => "Jorge",
+    "Email" => "jorge@enutt.net"
+  ];
+
+  echo json_encode($payload);
+
+
+  //TEST INSERT LEAD -------------------------- 
+  unset($headers);
+  $curl = curl_init();
+  $headers[] = 'Content-Type: application/json';
+  $headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+  curl_setopt($curl, CURLOPT_URL, get_option('_wp_ekilan_api_domain')."/crm/v7/Leads");
+  curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+  $response = curl_exec($curl);
+  $json = json_decode($response);
+  echo "<pre>";
+  print_r($json);
+  echo "</pre>";
   
-  curl "<?php echo get_option('_wp_ekilan_api_domain'); ?>/crm/v2/Leads" -X GET -H "Authorization: Zoho-oauthtoken <?php echo get_option('_wp_ekilan_access_token'); ?>"
 
 
-  https://www.zoho.com/crm/developer/docs/api/v2/get-records.html
 
-<?php }
+
+  //TEST GET LEADS -------------------------------
+  unset($headers);
+  $curl = curl_init();
+  $headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+  curl_setopt($curl, CURLOPT_URL, get_option('_wp_ekilan_api_domain')."/crm/v7/Leads?fields=First_Name,Last_Name,Email");
+  curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  $response = curl_exec($curl);
+  $json = array_slice(json_decode($response)->data, 0, 3);
+  echo "<pre>";
+  print_r($json);
+  echo "</pre>";
+}
 
 
 add_action( 'wp_ajax_zohocrm', 'wp_ekilan_action_zohocrm' );
@@ -80,6 +117,7 @@ function wp_ekilan_action_zohocrm() {
 
 
   $link = get_option("_wp_ekilan_accounts-server")."/oauth/v2/token";
+  echo $link;
   $payload = [
     "grant_type" => "authorization_code",
     "client_id" => get_option("_wp_ekilan_client_id"),
@@ -87,7 +125,8 @@ function wp_ekilan_action_zohocrm() {
     "redirect_uri" => get_option("_wp_ekilan_redirect_url"),
     "code" => get_option("_wp_ekilan_code")
   ];
-  $response = wp_ekilan_curl_call($link, 'POST', $payload);
+  $response = wp_ekilan_curl_call($link, $payload);
+  //print_r($response);
   update_option('_wp_ekilan_access_token', $response->access_token);
   //update_option('_wp_ekilan_scope', $response->scope);
   update_option('_wp_ekilan_api_domain', $response->api_domain);
@@ -97,7 +136,7 @@ function wp_ekilan_action_zohocrm() {
 }
 
 
-function wp_ekilan_curl_call($link, $request = 'GET', $payload = false) {
+function wp_ekilan_curl_call($link, $payload = false) {
   $curl = curl_init();
   curl_setopt($curl, CURLOPT_URL, $link);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
