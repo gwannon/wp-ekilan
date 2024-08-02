@@ -50,7 +50,7 @@ function wp_ekilan_admin_page() {
   </form>
   <hr/>
 
-  <a class="button" href="https://accounts.zoho.eu/oauth/v2/auth?scope=<?php echo get_option('_wp_ekilan_scope'); ?>&client_id=<?php echo get_option("_wp_ekilan_client_id"); ?>&response_type=code&access_type=online&redirect_uri=<?php echo get_option("_wp_ekilan_redirect_url"); ?>">Solicitar TOKEN</a><br/>
+  <a class="button" href="https://accounts.zoho.eu/oauth/v2/auth?scope=<?php echo get_option('_wp_ekilan_scope'); ?>&client_id=<?php echo get_option("_wp_ekilan_client_id"); ?>&response_type=code&access_type=offline&redirect_uri=<?php echo get_option("_wp_ekilan_redirect_url"); ?>">Solicitar TOKEN</a><br/>
   Token: <?php echo get_option("_wp_ekilan_code"); ?><br/>
   Location: <?php echo get_option("_wp_ekilan_location"); ?><br/>
   Account-server: <?php echo get_option("_wp_ekilan_accounts-server"); ?><br/><br/>
@@ -58,6 +58,7 @@ function wp_ekilan_admin_page() {
   TEST:<br/>
   
   Access_token: <?php echo get_option('_wp_ekilan_access_token'); ?><br/>
+  Refresh_token: <?php echo get_option('_wp_ekilan_refresh_token'); ?><br/>
   Scope: <?php echo get_option('_wp_ekilan_scope'); ?><br/>
   API_domain: <?php echo get_option('_wp_ekilan_api_domain'); ?><br/>
   Token_type: <?php echo get_option('_wp_ekilan_token_type'); ?><br/>
@@ -65,6 +66,11 @@ function wp_ekilan_admin_page() {
 
   <?php 
 
+
+
+
+  //TEST INSERT LEAD -------------------------- 
+  /*
   $payload['data'][] = [
     "Last_Name" => "Monclus",
     "First_Name" => "Jorge",
@@ -72,9 +78,6 @@ function wp_ekilan_admin_page() {
   ];
 
   echo json_encode($payload);
-
-
-  //TEST INSERT LEAD -------------------------- 
   unset($headers);
   $curl = curl_init();
   $headers[] = 'Content-Type: application/json';
@@ -88,9 +91,31 @@ function wp_ekilan_admin_page() {
   $json = json_decode($response);
   echo "<pre>";
   print_r($json);
-  echo "</pre>";
-  
+  echo "</pre>";*/
 
+
+  //TEST INSERT COMMENT --------------------
+  /*$lead_id = "513177000001121002";
+
+  $payload['data'][] = [
+    "Note_Content" => "Respuestas TEST AUTOEVALUA: abcabcabc"
+  ];
+
+  echo json_encode($payload);
+
+  $curl = curl_init();
+  $headers[] = 'Content-Type: application/json';
+  $headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+  curl_setopt($curl, CURLOPT_URL, get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/{$lead_id}/Notes");
+  curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+  $response = curl_exec($curl);
+  $json = json_decode($response);
+  echo "<pre>";
+  print_r($json);
+  echo "</pre>";*/
 
 
 
@@ -114,10 +139,11 @@ function wp_ekilan_action_zohocrm() {
   update_option('_wp_ekilan_code', $_GET['code']);
   update_option('_wp_ekilan_location', $_GET['location']);
   update_option('_wp_ekilan_accounts-server', $_GET['accounts-server']);
-
+  //echo "<pre>";
+  //print_r($_GET);
+  //echo "</pre>";
 
   $link = get_option("_wp_ekilan_accounts-server")."/oauth/v2/token";
-  echo $link;
   $payload = [
     "grant_type" => "authorization_code",
     "client_id" => get_option("_wp_ekilan_client_id"),
@@ -126,14 +152,42 @@ function wp_ekilan_action_zohocrm() {
     "code" => get_option("_wp_ekilan_code")
   ];
   $response = wp_ekilan_curl_call($link, $payload);
+  //echo "<pre>";
+  //print_r($payload);
   //print_r($response);
+  //echo "</pre>";
+  
   update_option('_wp_ekilan_access_token', $response->access_token);
+  update_option('_wp_ekilan_refresh_token', $response->refresh_token);
   //update_option('_wp_ekilan_scope', $response->scope);
   update_option('_wp_ekilan_api_domain', $response->api_domain);
   update_option('_wp_ekilan_token_type', $response->token_type);
   wp_redirect ("https://pruebas.enuttisworking.com/wp-admin/edit.php?post_type=emprendedor-pregunta&page=wp-ekilan");
   wp_die();
 }
+
+
+//https://pruebas.enuttisworking.com/wp-admin/admin-ajax.php?action=refresh-zohocrm
+add_action( 'wp_ajax_refresh-zohocrm', 'wp_ekilan_action_refresh_zohocrm' );
+function wp_ekilan_action_refresh_zohocrm() {
+  $link = get_option("_wp_ekilan_accounts-server")."/oauth/v2/token";
+  $payload = [
+    "grant_type" => "refresh_token",
+    "client_id" => get_option("_wp_ekilan_client_id"),
+    "client_secret" => get_option("_wp_ekilan_client_secret"),
+    "refresh_token" => get_option("_wp_ekilan_refresh_token")
+  ];
+  $curl = curl_init();
+  curl_setopt($curl, CURLOPT_URL, $link);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+  $response = curl_exec($curl);
+  echo $response;
+  update_option('_wp_ekilan_access_token', json_decode($response)->access_token);
+  wp_die();
+}
+
 
 
 function wp_ekilan_curl_call($link, $payload = false) {
