@@ -56,46 +56,173 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 				foreach($responses as $response) $csv[] = $response;
 				fputcsv($f, $csv);
 				fclose($f);*/
+
+				//Conseguimos un access token no caducado con el refresh token
+				$response = wp_ekilan_curl_call_get(admin_url('admin-ajax.php')."?action=refresh-zohocrm");
+				if(isset($response->access_token) && $response->access_token != '') {
+					//Chequeamos que no exista el lead
+					$curl = curl_init();
+					$headers = [];
+					$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+					//echo get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/search?email=".urlencode($_POST['email']);
+					curl_setopt($curl, CURLOPT_URL, get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/search?email=".urlencode($_POST['email']));
+					curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+					curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+					$response = curl_exec($curl);
+					$json = json_decode($response);
+					//echo "------<br/>";
+					//echo "CHEQUEAMOS SI EXISTE EL LEAD: ";
+					//print_r($json->data[0]->id);
+					//echo "<br/>-----------<br/>";
+					if(isset($json->data[0]->id) && $json->data[0]->id != '') {
+						//echo "SI EXISTE<br/>";
+						$lead_id = $json->data[0]->id;
+						//Metemos la etiqueta
+						//Ekilan TESTautoevaluación => 530022000010808001	
+						$payload = [];
+						$payload['tags'][] = [
+							"name" => "Ekilan TESTautoevaluación",
+							"id" => "530022000010808001",
+							"color_code" => "#D297EE"
+						];
+
+						$curl = curl_init();
+						$headers = [];
+						$headers[] = 'Content-Type: application/json';
+						$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+						curl_setopt($curl, CURLOPT_URL, get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/".$lead_id."/actions/add_tags");
+						curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+						curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+						curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+						$response = curl_exec($curl);
+						$json = json_decode($response);
+
+						//print_r($json);
+
+						if($json->data[0]->status != 'success') {
+							wp_ekilan_send_advise("Error al insertar ETIQUETA en ZohoCRM 1", $payload);
+						} 
+
+						
+					} else {
+						//echo "NO EXISTE y LO CREAMOS<br/>";
+						//Insertamos lead
+						$payload = [];
+						$payload['data'][] = [
+							"Last_Name" => $_POST['last_name'],
+							"First_Name" => $_POST['first_name'],
+							"Email" => $_POST['email']
+						];
+						$curl = curl_init();
+						$headers = [];
+						$headers[] = 'Content-Type: application/json';
+						$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+						curl_setopt($curl, CURLOPT_URL, get_option('_wp_ekilan_api_domain')."/crm/v7/Leads");
+						curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+						curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+						curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+						$response = curl_exec($curl);
+						$json = json_decode($response);
+						//echo "------<pre>";
+						//echo "INSERTAMOS EL LEAD";
+						//print_r($json);
+						//echo "</pre>-----------";
+						if(isset($json->data[0]->status) && $json->data[0]->status != 'success') {
+							wp_ekilan_send_advise("Error al insertar Posible Cliente en ZohoCRM", $payload);
+						} else {
+							$lead_id = $json->data[0]->details->id;
+							//Metemos la etiqueta
+							//Ekilan TESTautoevaluación => 530022000010808001	
+							$payload = [];
+							$payload['tags'][] = [
+								"name" => "Ekilan TESTautoevaluación",
+								"id" => "530022000010808001",
+								"color_code" => "#D297EE"
+							];
+
+							$curl = curl_init();
+							$headers = [];
+							$headers[] = 'Content-Type: application/json';
+							$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+							curl_setopt($curl, CURLOPT_URL, get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/".$lead_id."/actions/add_tags");
+							curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+							curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+							curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+							curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+							$response = curl_exec($curl);
+							$json = json_decode($response);
+							if($json->data[0]->status != 'success') {
+								wp_ekilan_send_advise("Error al insertar ETIQUETA en ZohoCRM 2", $payload);
+							} 
+						}
+					}
+
+					//Si tenemos un lead id metemos la nota
+					if(isset($lead_id) && $lead_id != '') {
+						$payload = [];
+						$payload['data'][] = [
+							"Note_Title" => "Respuestas TEST AUTOEVALUA",
+							"Note_Content" => implode(", ", $responses)
+						];
+						$curl = curl_init();
+						$headers = [];
+						$headers[] = 'Content-Type: application/json';
+						$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+						curl_setopt($curl, CURLOPT_URL, get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/".$lead_id."/Notes");
+						curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+						curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+						curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+						$response = curl_exec($curl);
+						$json = json_decode($response);
+						if($json->data[0]->status != 'success') {
+							wp_ekilan_send_advise("Error al insertar Nota en ZohoCRM", $payload);
+						} 
+					}
+				}
 				
 				//Enviamos email de aviso a los admin
+				$headers = [];
 				$headers = array('Content-Type: text/html; charset=UTF-8');
 				$emails = explode(",", get_option("_wp_ekilan_emails"));
 				foreach($emails as $email) {
 					wp_mail(chop($email), 
 						"Aviso de cuestionario de \"Autodiagnóstico en competencias emprendedoras\" rellenado", 
-						"<b>Cuestionario de \"Autodiagnóstico en competencias emprendedoras\" rellenado</b><br><br/>Respuestas: ".implode(", ", $csv), 
+						"<b>Cuestionario de \"Autodiagnóstico en competencias emprendedoras\" rellenado</b><br><br/>Nombre: ".$_POST['first_name']." ".$_POST['last_name']."<br/>Email: ".$_POST['email']."<br/>Respuestas: ".implode(", ", $responses), 
 						$headers);
 				}
 
 				//Generamos el PDF
 				$filename = wp_ekilan_generate_pdf($responses);
-				?><a class="download" href="<?=plugin_dir_url(__FILE__).'pdf/'.$filename;?>" target="_blank" rel="noopener"><?php _e("Descargar informe", 'wp-ekilan'); ?></a>
-				<p style="color: #000;"><?php _e("Si no visualiza correctamente el informe en formato PDF en su navegador, aplicación de ordenador, tablet, dispositivo móvil, etc., recomendamos que instale el programa Adobe Acrobat Reader (Software gratuito para visualizar documentos en formato PDF). Puede descargarlo en: <a href='https://get.adobe.com/es/reader/' target='_blank'>https://get.adobe.com/es/reader/</a>.", "wp-ekilan"); ?></p>
+				/* ?><a class="download" href="<?=plugin_dir_url(__FILE__).'pdf/'.$filename;?>" target="_blank" rel="noopener"><?php _e("Descargar informe", 'wp-ekilan'); ?></a><?php */
+				?><p style="color: #000;"><?php _e("Si no visualiza correctamente el informe en formato PDF en su navegador, aplicación de ordenador, tablet, dispositivo móvil, etc., recomendamos que instale el programa Adobe Acrobat Reader (Software gratuito para visualizar documentos en formato PDF). Puede descargarlo en: <a href='https://get.adobe.com/es/reader/' target='_blank'>https://get.adobe.com/es/reader/</a>.", "wp-ekilan"); ?></p>
 				<?php
-				$message = sprintf(__('<table border="0" width="600" cellpadding="10" align="center" bgcolor="ffffff">
-				<tbody>
-				<tr><td><img src="%simages/asle-300x98.jpg" alt=""></td></tr>
-				<tr>
-				<td><span style="font-family: Arial; font-size: medium;">Hola,</span></td>
-				</tr>
-				<tr>
-				<td><span style="font-family: Arial; font-size: medium;">Aquí tienes tu informe de "Autodiagnóstico en competencias emprendedoras".</span></td>
-				</tr>
-				<tr>
-				<td><span style="font-family: Arial; font-size: medium;">Muchas gracias.</span></td>
-				</tr>
-				<tr>
-				<td><span style="font-family: Arial; font-size: medium;">Un saludo</span></td>
-				</tr>
-				<tr>
-				<td align="center"><span style="font-family: Arial; font-size: medium;"><a style="color: #000;" href="https://ekilan.asle.es/">ekilan.asle.es</a></span></td>
-				</tr>
-				</tbody>
-				</table>', 'wp-ekilan'), plugin_dir_url( __FILE__ ));
 
 
 				//Enviamos email de aviso al usuario
 				if(isset($_POST['email']) && is_email($_POST['email'])) {
+					$message = sprintf(__('<table border="0" width="600" cellpadding="10" align="center" bgcolor="ffffff">
+					<tbody>
+					<tr><td><img src="%simages/logos.jpg" alt="" width="600"></td></tr>
+					<tr>
+					<td><span style="font-family: Arial; font-size: medium;">Hola,</span></td>
+					</tr>
+					<tr>
+					<td><span style="font-family: Arial; font-size: medium;">Aquí tienes tu informe de "Autodiagnóstico en competencias emprendedoras".</span></td>
+					</tr>
+					<tr>
+					<td><span style="font-family: Arial; font-size: medium;">Muchas gracias.</span></td>
+					</tr>
+					<tr>
+					<td><span style="font-family: Arial; font-size: medium;">Un saludo</span></td>
+					</tr>
+					<tr>
+					<td align="center"><span style="font-family: Arial; font-size: medium;"><a style="color: #000;" href="https://ekilan.asle.es/">ekilan.asle.es</a></span></td>
+					</tr>
+					</tbody>
+					</table>', 'wp-ekilan'), plugin_dir_url( __FILE__ ));
 					wp_mail($_POST['email'], __("Aquí tienes tu informe de \"Autodiagnóstico en competencias emprendedoras\"", 'wp-ekilan'), $message, $headers, plugin_dir_path(__FILE__).'pdf/'.$filename);
 				}
 			}
@@ -150,8 +277,14 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 								<?php } ?>
 							<?php } } wp_reset_query(); ?>
 						<?php if(!isset($sections[$nextstep])) { ?>
-							<h4><?php _e("Si quieres que te enviemos el informe por email, rellena este campo con tu email.", 'wp-ekilan'); ?></h4>
-							<input type="email" name="email" placeholder='email@dominio.com' value=''>
+							<h4><?php _e("Datos personales", 'wp-ekilan'); ?></h4>
+							<label><b><?php _e("Nombre", 'wp-ekilan'); ?>*</b><br/>
+							<input type="text" name="first_name" placeholder='Nombre *' value='' required></label><br/>
+							<label><b><?php _e("Apellidos", 'wp-ekilan'); ?>*</b><br/>
+							<input type="text" name="last_name" placeholder='Apellidos *' value='' required></label><br/>
+							<label><b><?php _e("Email", 'wp-ekilan'); ?>*</b><br/>
+							<input type="email" name="email" placeholder='email@dominio.com' value='' required></label><br/>
+							<p><?php _e("Recuerda revisar el email porque será a donde mandemos el informe con tus resultados.", 'wp-ekilan'); ?></p>
 							<div class="legal">
 								<?php echo get_option("_wp_ekilan_aviso_legal_".$current_lang); ?>
 							</div>
@@ -159,21 +292,23 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 						<input type="hidden" name="responses" value='<?=json_encode($responses);?>'>
 						<input type="hidden" name="currentstep" value="<?=$index;?>">
 						<input type="hidden" name="nextstep" value="<?php  echo (isset($sections[$nextstep]) ? $nextstep : "0"); ?>"> 
-
 						<input  type="submit" name="enviar" value="<?php echo (isset($sections[$nextstep]) ? __("Continuar", "wp-ekilan") : __("Enviar", "wp-ekilan")); ?>">
 					<?php break; } ?> 	
 				<?php } ?>
 			</form>
 		<?php } ?>
 	</div>
-  <style>
-  
-  
+  <style>  
   	#emprendedores-preguntas-form label {
   		display: block;
   		position: relative;
   		padding-left: 30px;
   	}
+
+		#emprendedores-preguntas-form label:has(input[type=email]),
+		#emprendedores-preguntas-form label:has(input[type=text]) {
+			padding-left: 0;
+		}
   	
   	#emprendedores-preguntas-form label input[type=radio] {
   		position: absolute;
@@ -181,6 +316,12 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
   		top: 3px;
   	
   	}
+
+		#emprendedores-preguntas-form label input[type=email],
+		#emprendedores-preguntas-form label input[type=text] {
+			width: 100%;
+			display: block;
+		}
   	
   	#emprendedores-preguntas-form .legal {
   		padding: 10px;
@@ -395,7 +536,7 @@ function wp_ekilan_generate_pdf($responses) {
 	$htmlsections = "";
 	$htmlconclusions = "";
 	$conclusionscounter = 1;
-	$html = "<table border='0' width='100%' cellpadding='5'><tr><td><img src='".plugin_dir_url( __FILE__ )."asle-300x98.jpg' alt=''></td></tr></table>";
+	$html = "<table border='0' width='100%' cellpadding='5'><tr><td><img src='".plugin_dir_url( __FILE__ )."images/logos.jpg' alt=''></td></tr></table>";
 	$html .= "<h1>".__("Cuestionario de \"Autodiagnóstico en competencias emprendedoras\"", 'wp-ekilan')."</h1>";
 	$html .= "<p>".__("Una vez cumplimentado el test de autodiagnóstico de competencias para emprender basado en el marco europeo de competencias de emprendimiento (EntreComp), mostramos las respuestas que has elegido y un pequeño resumen de la información basada en el ámbito del emprendimiento en Europa.", 'wp-ekilan')."</p>";
 	$sections = get_terms( array(
@@ -486,4 +627,18 @@ function wp_ekilan_generate_pdf($responses) {
 	$mpdf->Output(plugin_dir_path(__FILE__).'pdf/'.$filename,'F');
 	return $filename;
 
+}
+
+function wp_ekilan_send_advise($title, $payload = false) {
+	$headers = [];
+	$headers = array('Content-Type: text/html; charset=UTF-8');
+	$emails = explode(",", get_option("_wp_ekilan_emails"));
+	foreach($emails as $email) {
+		wp_mail(chop($email), 
+		$title, 
+		($payload != false ? "Payload".json_encode($payload)."<br>" : "")."Respuesta del servidor: ".json_encode($json)."<br><br/>".
+			"Nombre: ".$_POST['first_name']." ".$_POST['last_name']."<br/>Email: ".$_POST['email']."<br/>".
+			"Respuestas: ".implode(", ", $responses), 
+		$headers);
+	}
 }
