@@ -101,7 +101,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 						//print_r($json);
 
 						if($json->data[0]->status != 'success') {
-							wp_ekilan_send_advise("Error al insertar ETIQUETA en ZohoCRM 1", $payload);
+							wp_ekilan_send_advise("Error al insertar ETIQUETA en ZohoCRM 1", $responses, $payload);
 						} 
 
 						
@@ -130,7 +130,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 						//print_r($json);
 						//echo "</pre>-----------";
 						if(isset($json->data[0]->status) && $json->data[0]->status != 'success') {
-							wp_ekilan_send_advise("Error al insertar Posible Cliente en ZohoCRM", $payload);
+							wp_ekilan_send_advise("Error al insertar Posible Cliente en ZohoCRM", $responses, $payload);
 						} else {
 							$lead_id = $json->data[0]->details->id;
 							//Metemos la etiqueta
@@ -154,7 +154,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 							$response = curl_exec($curl);
 							$json = json_decode($response);
 							if($json->data[0]->status != 'success') {
-								wp_ekilan_send_advise("Error al insertar ETIQUETA en ZohoCRM 2", $payload);
+								wp_ekilan_send_advise("Error al insertar ETIQUETA en ZohoCRM 2", $responses, $payload);
 							} 
 						}
 					}
@@ -178,7 +178,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 						$response = curl_exec($curl);
 						$json = json_decode($response);
 						if($json->data[0]->status != 'success') {
-							wp_ekilan_send_advise("Error al insertar Nota en ZohoCRM", $payload);
+							wp_ekilan_send_advise("Error al insertar Nota en ZohoCRM", $responses, $payload);
 						} 
 					}
 				}
@@ -629,7 +629,7 @@ function wp_ekilan_generate_pdf($responses) {
 
 }
 
-function wp_ekilan_send_advise($title, $payload = false) {
+function wp_ekilan_send_advise($title, $responses, $payload = false) {
 	$headers = [];
 	$headers = array('Content-Type: text/html; charset=UTF-8');
 	$emails = explode(",", get_option("_wp_ekilan_emails"));
