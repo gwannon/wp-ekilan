@@ -49,8 +49,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 			$currentstep = $_POST['nextstep'];
 			if($currentstep == 0) {
 				$control = 1;
-				?><h4 class="emprendedores-preguntas-mensaje"><?php _e("Eskerrik asko! Gracias por completar el formulario.", "wp-ekilan"); ?></h4><?php
-				
+
 				//Guardar datos en CSV
 				/*$f=fopen(__DIR__."/csv/autodiagnostico.csv", "a+");
 				$csv[] = date("Y-m-d H:i:s");
@@ -61,169 +60,17 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 
 				//Conseguimos un access token no caducado con el refresh token
 				$link = admin_url('admin-ajax.php')."?action=refresh-zohocrm";
-				$response = wp_ekilan_curl_call_get($link);
-
-				wp_ekilan_send_advise("Resultado de pedir un nuevo access_token", $response, $link, $responses, "");
-
-				if(isset($response->access_token) && $response->access_token != '') {
-					//Chequeamos que no exista el lead
-					$curl = curl_init();
-					$headers = [];
-					$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
-					//echo get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/search?email=".urlencode($_POST['email']);
-					$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/search?email=".$_POST['email'];
-					curl_setopt($curl, CURLOPT_URL, $link);
-					curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-					curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-					$response = curl_exec($curl);
-					$json = json_decode($response);
-					wp_ekilan_send_advise("Resultado de búsqueda del email ".$_POST['email'], $response, $link, $responses, "");
-					//echo "------<br/>";
-					//echo "CHEQUEAMOS SI EXISTE EL LEAD: ";
-					//print_r($json->data[0]->id);
-					//echo "<br/>-----------<br/>";
-					if(isset($json->data[0]->id) && $json->data[0]->id != '') {
-						sleep(1);
-						//echo "SI EXISTE<br/>";
-						$lead_id = $json->data[0]->id;
-						//Metemos la etiqueta
-						//Ekilan TESTautoevaluación => 530022000010808001	
-						$payload = [];
-						$payload['tags'][] = [
-							"name" => "Ekilan TESTautoevaluación",
-							"id" => "530022000010808001",
-							"color_code" => "#D297EE"
-						];
-
-						$curl = curl_init();
-						$headers = [];
-						$headers[] = 'Content-Type: application/json';
-						$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
-						$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/".$lead_id."/actions/add_tags";
-						curl_setopt($curl, CURLOPT_URL, $link);
-						curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-						curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-						curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-						curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
-						$response = curl_exec($curl);
-						$json = json_decode($response);
-
-						//print_r($json);
-
-						if($json->data[0]->status != 'success') {
-							wp_ekilan_send_advise("ERROR al insertar ETIQUETA en ZohoCRM 1", $json, $link, $responses, $payload);
-						} else {
-							wp_ekilan_send_advise("EXITO al insertar ETIQUETA en ZohoCRM 1", $json, $link, $responses, $payload);
-						}
-					} else {
-						sleep(1);
-						//echo "NO EXISTE y LO CREAMOS<br/>";
-						//Insertamos lead
-						$payload = [];
-						$payload['data'][] = [
-							"Last_Name" => $_POST['last_name'],
-							"First_Name" => $_POST['first_name'],
-							"Email" => $_POST['email']
-						];
-						$curl = curl_init();
-						$headers = [];
-						$headers[] = 'Content-Type: application/json';
-						$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
-						$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads";
-						curl_setopt($curl, CURLOPT_URL, $link);
-						curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-						curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-						curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-						curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
-						$response = curl_exec($curl);
-						$json = json_decode($response);
-						//echo "------<pre>";
-						//echo "INSERTAMOS EL LEAD";
-						//print_r($json);
-						//echo "</pre>-----------";
-						if(isset($json->data[0]->status) && $json->data[0]->status != 'success') {
-							wp_ekilan_send_advise("ERROR al insertar Posible Cliente en ZohoCRM", $json, $link, $responses, $payload);
-						} else {
-							sleep(1);
-							wp_ekilan_send_advise("EXITO al insertar Posible Cliente en ZohoCRM", $json, $link, $responses, $payload);
-							$lead_id = $json->data[0]->details->id;
-							//Metemos la etiqueta
-							//Ekilan TESTautoevaluación => 530022000010808001	
-							$payload = [];
-							$payload['tags'][] = [
-								"name" => "Ekilan TESTautoevaluación",
-								"id" => "530022000010808001",
-								"color_code" => "#D297EE"
-							];
-
-							$curl = curl_init();
-							$headers = [];
-							$headers[] = 'Content-Type: application/json';
-							$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
-							$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/".$lead_id."/actions/add_tags";
-							curl_setopt($curl, CURLOPT_URL, $link);
-							curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-							curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-							curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-							curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
-							$response = curl_exec($curl);
-							$json = json_decode($response);
-							if($json->data[0]->status != 'success') {
-								wp_ekilan_send_advise("ERROR al insertar ETIQUETA en ZohoCRM 2", $json, $link, $responses, $payload);
-							} else {
-								wp_ekilan_send_advise("EXITO al insertar ETIQUETA en ZohoCRM 2", $json, $link, $responses, $payload);
-							}
-						}
-					}
-
-					//Si tenemos un lead id metemos la nota
-					if(isset($lead_id) && $lead_id != '') {
-						sleep(1);
-						$payload = [];
-						$payload['data'][] = [
-							"Note_Title" => "Respuestas TEST AUTOEVALUA",
-							"Note_Content" => implode(", ", $responses)
-						];
-						$curl = curl_init();
-						$headers = [];
-						$headers[] = 'Content-Type: application/json';
-						$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
-						$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/".$lead_id."/Notes";
-						curl_setopt($curl, CURLOPT_URL, $link);
-						curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-						curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-						curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-						curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
-						$response = curl_exec($curl);
-						$json = json_decode($response);
-						if($json->data[0]->status != 'success') {
-							wp_ekilan_send_advise("ERROR al insertar Nota en ZohoCRM", $json, $link, $responses, $payload);
-						} else {
-							wp_ekilan_send_advise("EXITO al insertar Nota en ZohoCRM", $json, $link, $responses, $payload);
-						} 
-					}
-				}
-				
-				//Enviamos email de aviso a los admin
-				$headers = [];
-				$headers = array('Content-Type: text/html; charset=UTF-8');
-				$emails = explode(",", get_option("_wp_ekilan_emails"));
-				foreach($emails as $email) {
-					wp_mail(chop($email), 
-						"Aviso de cuestionario de \"Autodiagnóstico en competencias emprendedoras\" rellenado", 
-						"<b>Cuestionario de \"Autodiagnóstico en competencias emprendedoras\" rellenado</b><br><br/>Nombre: ".$_POST['first_name']." ".$_POST['last_name']."<br/>Email: ".$_POST['email']."<br/>Respuestas: ".implode(", ", $responses), 
-						$headers);
-				}
+				$response_api = wp_ekilan_curl_call_get($link);
+				wp_ekilan_send_advise("Resultado de pedir un nuevo access_token", $response_api, $link, $responses, "", []);
+				if(DEBUG_EMAIL) { echo "<pre>PEDIMOS UN NUEVO TOKEN: "; print_r($response_api); echo "</pre>"; }
 
 				//Generamos el PDF
 				$filename = wp_ekilan_generate_pdf($responses);
-				/* ?><a class="download" href="<?=plugin_dir_url(__FILE__).'pdf/'.$filename;?>" target="_blank" rel="noopener"><?php _e("Descargar informe", 'wp-ekilan'); ?></a><?php */
-				?><p style="color: #000;"><?php _e("Si no visualiza correctamente el informe en formato PDF en su navegador, aplicación de ordenador, tablet, dispositivo móvil, etc., recomendamos que instale el programa Adobe Acrobat Reader (Software gratuito para visualizar documentos en formato PDF). Puede descargarlo en: <a href='https://get.adobe.com/es/reader/' target='_blank'>https://get.adobe.com/es/reader/</a>.", "wp-ekilan"); ?></p>
-				<?php
-
 
 				//Enviamos email de aviso al usuario
 				if(isset($_POST['email']) && is_email($_POST['email'])) {
+					$headers = [];
+					$headers = array('Content-Type: text/html; charset=UTF-8');
 					$message = sprintf(__('<table border="0" width="600" cellpadding="10" align="center" bgcolor="ffffff">
 					<tbody>
 					<tr><td><img src="%simages/logos.jpg" alt="" width="600"></td></tr>
@@ -245,6 +92,124 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 					</tbody>
 					</table>', 'wp-ekilan'), plugin_dir_url( __FILE__ ));
 					wp_mail($_POST['email'], __("Aquí tienes tu informe de \"Autodiagnóstico en competencias emprendedoras\"", 'wp-ekilan'), $message, $headers, plugin_dir_path(__FILE__).'pdf/'.$filename);
+				}
+
+				//Enviamos email de aviso a los admin
+				$headers = [];
+				$headers = array('Content-Type: text/html; charset=UTF-8');
+				$emails = explode(",", get_option("_wp_ekilan_emails"));
+				foreach($emails as $email) {
+					wp_mail(chop($email), 
+						"Aviso de cuestionario de \"Autodiagnóstico en competencias emprendedoras\" rellenado", 
+						"<b>Cuestionario de \"Autodiagnóstico en competencias emprendedoras\" rellenado</b><br><br/>Nombre: ".$_POST['first_name']." ".$_POST['last_name']."<br/>Email: ".$_POST['email']."<br/>Respuestas: ".implode(", ", $responses), 
+						$headers);
+				} ?>
+					<h4 class="emprendedores-preguntas-mensaje"><?php _e("Eskerrik asko! Gracias por completar el formulario.", "wp-ekilan"); ?></h4>
+					<p style="color: #000;">
+						<?php _e("Si no visualiza correctamente el informe en formato PDF en su navegador, aplicación de ordenador, tablet, dispositivo móvil, etc., recomendamos que instale el programa Adobe Acrobat Reader (Software gratuito para visualizar documentos en formato PDF). Puede descargarlo en: <a href='https://get.adobe.com/es/reader/' target='_blank'>https://get.adobe.com/es/reader/</a>.", "wp-ekilan"); ?>
+					</p>
+				<?php
+				/* --------- CONEXIÓN CON ZOHOCRM -------------- */
+				if(isset($response_api->access_token) && $response_api->access_token != '') {
+					//Chequeamos que si existe el lead
+					sleep(1);
+					$curl = curl_init();
+					$headers = [];
+					$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+					$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/search?email=".$_POST['email'];
+					curl_setopt($curl, CURLOPT_URL, $link);
+					curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+					curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+					$response = curl_exec($curl);
+					$json = json_decode($response);
+					wp_ekilan_send_advise("Resultado de búsqueda del email ".$_POST['email'], $response, $link, $responses, "", $headers);
+					if(DEBUG_EMAIL) { echo "<pre>CHEQUEAMOS SI EXISTE EL LEAD: "; print_r($json); echo "</pre>"; }
+					if(isset($json->data[0]->id) && $json->data[0]->id != '') { //Si existe nos guardamos el ID
+						$lead_id = $json->data[0]->id;
+					} else { //Si no existe lo creamos
+						$payload = [];
+						$payload['data'][] = [
+							"Last_Name" => $_POST['last_name'],
+							"First_Name" => $_POST['first_name'],
+							"Email" => $_POST['email']
+						];
+						$curl = curl_init();
+						$headers = [];
+						$headers[] = 'Content-Type: application/json';
+						$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+						$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads";
+						curl_setopt($curl, CURLOPT_URL, $link);
+						curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+						curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+						curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+						$response = curl_exec($curl);
+						$json = json_decode($response);
+						if(DEBUG_EMAIL) { echo "<pre>INSERTAMOS EL LEAD: "; print_r($json); echo "</pre>"; }
+						if(isset($json->data[0]->status) && $json->data[0]->status == 'success') {
+							wp_ekilan_send_advise("EXITO al insertar Posible Cliente en ZohoCRM", $json, $link, $responses, $payload, $headers);
+							$lead_id = $json->data[0]->details->id;
+						} else {
+							wp_ekilan_send_advise("ERROR al insertar Posible Cliente en ZohoCRM", $json, $link, $responses, $payload, $headers);
+						}
+					}
+
+					//Si tenemos un lead id metemos la nota y la etiqueta
+					if(isset($lead_id) && $lead_id != '') {
+						//Metemos la etiqueta
+						sleep(1);
+						$payload = [];
+						$payload['tags'][] = [
+							"name" => "Ekilan TESTautoevaluación",
+							"id" => "530022000010808001",
+							"color_code" => "#D297EE"
+						];
+						$curl = curl_init();
+						$headers = [];
+						$headers[] = 'Content-Type: application/json';
+						$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+						$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/".$lead_id."/actions/add_tags";
+						curl_setopt($curl, CURLOPT_URL, $link);
+						curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+						curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+						curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+						$response = curl_exec($curl);
+						$json = json_decode($response);
+						if(DEBUG_EMAIL) { echo "<pre>INSERTAMOS LA ETIQUETA: "; print_r($json); echo "</pre>"; }
+						if(isset($json->data[0]->status) && $json->data[0]->status == 'success') {
+							wp_ekilan_send_advise("EXITO al insertar ETIQUETA en ZohoCRM", $json, $link, $responses, $payload, $headers);
+						} else {
+							wp_ekilan_send_advise("ERROR al insertar ETIQUETA en ZohoCRM", $json, $link, $responses, $payload, $headers);
+						}
+
+
+						//Metemos la nota
+						sleep(1);
+						$payload = [];
+						$payload['data'][] = [
+							"Note_Title" => "Respuestas TEST AUTOEVALUA",
+							"Note_Content" => implode(", ", $responses)
+						];
+						$curl = curl_init();
+						$headers = [];
+						$headers[] = 'Content-Type: application/json';
+						$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+						$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/".$lead_id."/Notes";
+						curl_setopt($curl, CURLOPT_URL, $link);
+						curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+						curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+						curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
+						$response = curl_exec($curl);
+						$json = json_decode($response);
+						if(DEBUG_EMAIL) { echo "<pre>INSERTAMOS LA NOTA: "; print_r($json); echo "</pre>"; }
+						if(isset($json->data[0]->status) && $json->data[0]->status == 'success') {
+							wp_ekilan_send_advise("EXITO al insertar Nota en ZohoCRM", $json, $link, $responses, $payload, $headers);
+						} else {
+							wp_ekilan_send_advise("ERROR al insertar Nota en ZohoCRM", $json, $link, $responses, $payload, $headers);
+						} 
+					}
 				}
 			}
 		} ?>
@@ -650,7 +615,7 @@ function wp_ekilan_generate_pdf($responses) {
 
 }
 
-function wp_ekilan_send_advise($title, $json, $link, $responses, $payload = false) {
+function wp_ekilan_send_advise($title, $json, $link, $responses, $payload = false, $api_headers = []) {
 	if(DEBUG_EMAIL) {
 		$headers = [];
 		$headers = array('Content-Type: text/html; charset=UTF-8');
@@ -660,7 +625,8 @@ function wp_ekilan_send_advise($title, $json, $link, $responses, $payload = fals
 				"Enlace: ".$link."<br><br/>".
 				"Respuesta del servidor: ".json_encode($json)."<br><br/>".
 				"Nombre: ".$_POST['first_name']." ".$_POST['last_name']."<br/>Email: ".$_POST['email']."<br/>".
-				"Respuestas: ".implode(", ", $responses), 
+				"Respuestas: ".implode(", ", $responses)."<br/>".
+				"API Headers: ".implode(" |", $api_headers), 
 			$headers);
 		}
 	}
