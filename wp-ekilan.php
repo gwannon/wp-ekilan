@@ -115,7 +115,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 					sleep(1);
 					$curl = curl_init();
 					$headers = [];
-					$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+					$headers[] = 'Authorization: Zoho-oauthtoken '.$response_api->access_token;
 					$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/search?email=".$_POST['email'];
 					curl_setopt($curl, CURLOPT_URL, $link);
 					curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
@@ -136,7 +136,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 						$curl = curl_init();
 						$headers = [];
 						$headers[] = 'Content-Type: application/json';
-						$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+						$headers[] = 'Authorization: Zoho-oauthtoken '.$response_api->access_token;
 						$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads";
 						curl_setopt($curl, CURLOPT_URL, $link);
 						curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
@@ -167,7 +167,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 						$curl = curl_init();
 						$headers = [];
 						$headers[] = 'Content-Type: application/json';
-						$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+						$headers[] = 'Authorization: Zoho-oauthtoken '.$response_api->access_token;
 						$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/".$lead_id."/actions/add_tags";
 						curl_setopt($curl, CURLOPT_URL, $link);
 						curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
@@ -194,7 +194,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 						$curl = curl_init();
 						$headers = [];
 						$headers[] = 'Content-Type: application/json';
-						$headers[] = 'Authorization: Zoho-oauthtoken '.get_option('_wp_ekilan_access_token');
+						$headers[] = 'Authorization: Zoho-oauthtoken '.$response_api->access_token;
 						$link = get_option('_wp_ekilan_api_domain')."/crm/v7/Leads/".$lead_id."/Notes";
 						curl_setopt($curl, CURLOPT_URL, $link);
 						curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
