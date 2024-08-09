@@ -14,6 +14,7 @@
  * WordPress 6.4.2
  */
 
+define("DEBUG_ECHO", false);
 define("DEBUG_EMAIL", true);
 
 /* ----------- Multi-idioma ------------------ */
@@ -62,7 +63,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 				$link = admin_url('admin-ajax.php')."?action=refresh-zohocrm";
 				$response_api = wp_ekilan_curl_call_get($link);
 				wp_ekilan_send_advise("Resultado de pedir un nuevo access_token", $response_api, $link, $responses, "", []);
-				if(DEBUG_EMAIL) { echo "<pre>PEDIMOS UN NUEVO TOKEN: "; print_r($response_api); echo "</pre>"; }
+				if(DEBUG_ECHO) { echo "<pre>PEDIMOS UN NUEVO TOKEN: "; print_r($response_api); echo "</pre>"; }
 
 				//Generamos el PDF
 				$filename = wp_ekilan_generate_pdf($responses);
@@ -123,7 +124,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 					$response = curl_exec($curl);
 					$json = json_decode($response);
 					wp_ekilan_send_advise("Resultado de búsqueda del email ".$_POST['email'], $response, $link, $responses, "", $headers);
-					if(DEBUG_EMAIL) { echo "<pre>CHEQUEAMOS SI EXISTE EL LEAD: "; print_r($json); echo "</pre>"; }
+					if(DEBUG_ECHO) { echo "<pre>CHEQUEAMOS SI EXISTE EL LEAD: "; print_r($json); echo "</pre>"; }
 					if(isset($json->data[0]->id) && $json->data[0]->id != '') { //Si existe nos guardamos el ID
 						$lead_id = $json->data[0]->id;
 					} else { //Si no existe lo creamos
@@ -145,7 +146,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 						curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
 						$response = curl_exec($curl);
 						$json = json_decode($response);
-						if(DEBUG_EMAIL) { echo "<pre>INSERTAMOS EL LEAD: "; print_r($json); echo "</pre>"; }
+						if(DEBUG_ECHO) { echo "<pre>INSERTAMOS EL LEAD: "; print_r($json); echo "</pre>"; }
 						if(isset($json->data[0]->status) && $json->data[0]->status == 'success') {
 							wp_ekilan_send_advise("EXITO al insertar Posible Cliente en ZohoCRM", $json, $link, $responses, $payload, $headers);
 							$lead_id = $json->data[0]->details->id;
@@ -176,7 +177,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 						curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
 						$response = curl_exec($curl);
 						$json = json_decode($response);
-						if(DEBUG_EMAIL) { echo "<pre>INSERTAMOS LA ETIQUETA: "; print_r($json); echo "</pre>"; }
+						if(DEBUG_ECHO) { echo "<pre>INSERTAMOS LA ETIQUETA: "; print_r($json); echo "</pre>"; }
 						if(isset($json->data[0]->status) && $json->data[0]->status == 'success') {
 							wp_ekilan_send_advise("EXITO al insertar ETIQUETA en ZohoCRM", $json, $link, $responses, $payload, $headers);
 						} else {
@@ -203,7 +204,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 						curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload));
 						$response = curl_exec($curl);
 						$json = json_decode($response);
-						if(DEBUG_EMAIL) { echo "<pre>INSERTAMOS LA NOTA: "; print_r($json); echo "</pre>"; }
+						if(DEBUG_ECHO) { echo "<pre>INSERTAMOS LA NOTA: "; print_r($json); echo "</pre>"; }
 						if(isset($json->data[0]->status) && $json->data[0]->status == 'success') {
 							wp_ekilan_send_advise("EXITO al insertar Nota en ZohoCRM", $json, $link, $responses, $payload, $headers);
 						} else {
