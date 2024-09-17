@@ -369,7 +369,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 			list-style: none;
 			display: flex;
 			align-items: end;
-			color: var(--black-color);
+			color: var(--color-content-text);
 			padding: 0px 20px 5px 0px;
 			position: relative;
 			font-size: 12px;
@@ -402,8 +402,8 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 		#emprendedores-preguntas ul.steps li:before {
 			position: absolute;
 			content: counter(my-counter);
-			color: var(--the7-accent-bg-color);
-			background-color: var(--the7-accent-bg-2);
+			color: var(--color-content-text);
+			background-color: var(--color-content-link);
 			display: flex;
 			width: 40px;
 			height: 40px;
@@ -423,13 +423,14 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 		}
 
 		#emprendedores-preguntas ul.steps li.current:before {
-			background-color: var(--black-color);
+			background-color: var(--color-content-text);
+			color: var(--color-content-link);
 		}
 
 		#emprendedores-preguntas ul.steps li:after {
 			position: absolute;
 			content: "";
-			background-color: var(--the7-accent-bg-2);
+			background-color: var(--color-content-link);
 			display: none;
 		}
 

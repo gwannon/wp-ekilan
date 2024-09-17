@@ -153,6 +153,7 @@ add_action('save_post', 'wp_ekilan_save_custom_fields' );
 //Columnas , filtros y ordenaciones ------------------------------------------------
 function emprendedores_preguntas_set_custom_edit_columns($columns) {
   $columns['test'] = __( 'Sección', 'wp-ekilan');
+	$columns['answers'] = __( 'Respuestas', 'wp-ekilan');
   unset($columns['date']);
 	return $columns;
 }
@@ -167,7 +168,14 @@ function emprendedores_preguntas_custom_column( $column ) {
       $string[] = $term->name;
     }
     if(count($string) > 0) echo implode (", ", $string);
-  } /*else if ($column == 'centro_estudios-emprendedor-pregunta') {
+  } else if ($column == 'answers') {
+		echo "<ul>";
+		echo "<li>".get_post_meta( $post->ID, '_emprendedor-pregunta_valor-a', true )." -> ".get_post_meta( $post->ID, '_emprendedor-pregunta_respuesta-a', true )."</li>";
+		echo "<li>".get_post_meta( $post->ID, '_emprendedor-pregunta_valor-b', true )." -> ".get_post_meta( $post->ID, '_emprendedor-pregunta_respuesta-b', true )."</li>";
+		echo "<li>".get_post_meta( $post->ID, '_emprendedor-pregunta_valor-c', true )." -> ".get_post_meta( $post->ID, '_emprendedor-pregunta_respuesta-c', true )."</li>";
+		echo "</ul>";
+	}
+	/*else if ($column == 'centro_estudios-emprendedor-pregunta') {
 		echo get_post_meta( $post->ID, '_emprendedor-pregunta_centro_estudios', true );
   }*/
 }

@@ -50,7 +50,7 @@ function wp_ekilan_admin_page() {
   </form>
   <hr/>
   <h3><?php _e("SOLICITAR TOKEN a ZohoCRM", 'wp-ekilan'); ?></h3>
-  <a class="button" href="https://accounts.zoho.eu/oauth/v2/auth?scope=<?php echo get_option('_wp_ekilan_scope'); ?>&client_id=<?php echo get_option("_wp_ekilan_client_id"); ?>&response_type=code&access_type=offline&redirect_uri=<?php echo get_option("_wp_ekilan_redirect_url"); ?>"><?php _e("Solicitar token", 'wp-ekilan'); ?></a><br/>
+  <a class="button" href="https://accounts.zoho.eu/oauth/v2/auth?scope=<?php echo get_option('_wp_ekilan_scope'); ?>&client_id=<?php echo get_option("_wp_ekilan_client_id"); ?>&response_type=code&access_type=offline&redirect_uri=<?php echo get_option("_wp_ekilan_redirect_url"); ?>" target="_blank"><?php _e("Solicitar token", 'wp-ekilan'); ?></a><br/>
   <h3><?php _e("DATOS DE CONEXIÓN ZohoCRM", 'wp-ekilan'); ?></h3>
   <?php _e("Token", 'wp-ekilan'); ?>: <?php echo get_option("_wp_ekilan_code"); ?><br/>
   <?php _e("Location", 'wp-ekilan'); ?>: <?php echo get_option("_wp_ekilan_location"); ?><br/>
