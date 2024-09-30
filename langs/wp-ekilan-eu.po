@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: azti-descargas\n"
-"POT-Creation-Date: 2024-09-17 11:33+0200\n"
-"PO-Revision-Date: 2024-09-17 11:34+0200\n"
+"POT-Creation-Date: 2024-09-30 13:00+0200\n"
+"PO-Revision-Date: 2024-09-30 13:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: jorge@enutt.net\n"
 "Language: eu\n"
@@ -18,25 +18,26 @@ msgstr ""
 
 #: ../admin.php:6
 msgid "Configuración"
-msgstr ""
+msgstr "Konfigurazio"
 
 #: ../admin.php:12
 msgid ""
 "Configuración de cuestionario de Autodiagnóstico en competencias "
 "emprendedoras"
 msgstr ""
+"Ekintzailetza-gaitasunen autodiagnostikoari buruzko galdetegia konfiguratzea"
 
 #: ../admin.php:16
 msgid "Datos guardados correctamente."
-msgstr ""
+msgstr "Datuak behar bezala gorde dira."
 
 #: ../admin.php:29
 msgid "Access token refrescado."
-msgstr ""
+msgstr "Access token gogora."
 
 #: ../admin.php:33
 msgid "Emails a los que avisar de la descarga"
-msgstr ""
+msgstr "Deskargaren berri emateko emailak"
 
 #: ../admin.php:33
 msgid "Separados por comas"
@@ -44,35 +45,35 @@ msgstr "Komaz bereizita"
 
 #: ../admin.php:36
 msgid "Aviso legal"
-msgstr ""
+msgstr "Lege oharra"
 
 #: ../admin.php:40
 msgid "Conexión a ZohoCRM"
-msgstr ""
+msgstr "ZohoCRMrako konexioa"
 
 #: ../admin.php:41
 msgid "Client ID"
-msgstr ""
+msgstr "Client ID"
 
 #: ../admin.php:43
 msgid "Client Secret"
-msgstr ""
+msgstr "Client Secret"
 
 #: ../admin.php:45
 msgid "Redirect URL"
-msgstr ""
+msgstr "Redirect URL"
 
 #: ../admin.php:47 ../admin.php:61
 msgid "Scope"
-msgstr ""
+msgstr "Scope"
 
 #: ../admin.php:49
 msgid "Guardar"
-msgstr ""
+msgstr "Gorde"
 
 #: ../admin.php:52
 msgid "SOLICITAR TOKEN a ZohoCRM"
-msgstr ""
+msgstr "TOKEN ESKATU ZohoCRMri"
 
 #: ../admin.php:53
 msgid "Solicitar token"
@@ -80,201 +81,202 @@ msgstr "Eskatu tokena"
 
 #: ../admin.php:54
 msgid "DATOS DE CONEXIÓN ZohoCRM"
-msgstr ""
+msgstr "ZohoCRM KONEXIO DATUAK"
 
 #: ../admin.php:55
 msgid "Token"
-msgstr ""
+msgstr "Token"
 
 #: ../admin.php:56
 msgid "Location"
-msgstr ""
+msgstr "Location"
 
 #: ../admin.php:57
 msgid "Account-server"
-msgstr ""
+msgstr "Account-server"
 
 #: ../admin.php:59
 msgid "Access_token"
-msgstr ""
+msgstr "Access_token"
 
 #: ../admin.php:60
 msgid "Refresh_token"
-msgstr ""
+msgstr "Refresh_token"
 
 #: ../admin.php:62
 msgid "API_domain"
-msgstr ""
+msgstr "API_domain"
 
 #: ../admin.php:63
 msgid "Token_type"
-msgstr ""
+msgstr "Token_type"
 
 #: ../admin.php:66
 msgid "TEST CONEXIÓN"
-msgstr ""
+msgstr "KONEXIO-TESTA"
 
 #: ../admin.php:67
 msgid ""
 "Debería verse el listado de los 3 últimos posibles clietnes insertados en "
 "ZohoCRM."
 msgstr ""
+"ZohoCRMn txertatutako azken 3 klietneen zerrenda ikusi beharko litzateke."
 
 #: ../custom_posts.php:28 ../custom_posts.php:167
 msgid "Add file"
-msgstr ""
+msgstr "Add file"
 
 #: ../custom_posts.php:80
 msgid "Drag and drop"
-msgstr ""
+msgstr "Drag and drop"
 
 #: ../custom_posts.php:105
 msgid "Write here the location"
-msgstr ""
+msgstr "Write here the location"
 
 #: ../custom_posts.php:106
 msgid "Search location"
-msgstr ""
+msgstr "Search location"
 
 #: ../custom_posts.php:144
 msgid "Add image"
-msgstr ""
+msgstr "Add image"
 
 #: ../emprendedores-preguntas.php:8
 msgid "Preguntas"
-msgstr ""
+msgstr "Galderak"
 
 #: ../emprendedores-preguntas.php:9
 msgid "Pregunta"
-msgstr ""
+msgstr "Galdera"
 
 #: ../emprendedores-preguntas.php:10
 msgid "Añadir nueva"
-msgstr ""
+msgstr "Gehitu berria"
 
 #: ../emprendedores-preguntas.php:11 ../emprendedores-preguntas.php:23
 msgid "Añadir nueva pregunta"
-msgstr ""
+msgstr "Gehitu beste galdera bat"
 
 #: ../emprendedores-preguntas.php:12
 msgid "Editar pregunta"
-msgstr ""
+msgstr "Galdera editatu"
 
 #: ../emprendedores-preguntas.php:13
 msgid "Nueva pregunta"
-msgstr ""
+msgstr "Galdera berria"
 
 #: ../emprendedores-preguntas.php:14
 msgid "Todas las preguntas"
-msgstr ""
+msgstr "Galdera guztiak"
 
 #: ../emprendedores-preguntas.php:15
 msgid "Ver pregunta"
-msgstr ""
+msgstr "Ikusi galdera"
 
 #: ../emprendedores-preguntas.php:16
-msgid "Buscar preguntass"
-msgstr ""
+msgid "Buscar preguntas"
+msgstr "Galderak bilatu"
 
 #: ../emprendedores-preguntas.php:17
 msgid "Pregunta no encontrada"
-msgstr ""
+msgstr "Galdera ez da aurkitu"
 
 #: ../emprendedores-preguntas.php:18
 msgid "Pregunta no encontrada en la papelera"
-msgstr ""
+msgstr "Galdera ez da aurkitu zakarrontzian"
 
 #: ../emprendedores-preguntas.php:19
 msgid "Preguntas Autodiagnóstico"
-msgstr ""
+msgstr "Autodiagnostikorako galderak"
 
 #: ../emprendedores-preguntas.php:48 ../emprendedores-preguntas.php:58
 msgid "Secciones"
-msgstr ""
+msgstr "Atalak"
 
 #: ../emprendedores-preguntas.php:49 ../emprendedores-preguntas.php:155
 msgid "Sección"
-msgstr ""
+msgstr "Atala"
 
 #: ../emprendedores-preguntas.php:50
 msgid "Buscar secciones"
-msgstr ""
+msgstr "Bilatu atalak"
 
 #: ../emprendedores-preguntas.php:51
 msgid "Todas las secciones"
-msgstr ""
+msgstr "Atal guztiak"
 
 #: ../emprendedores-preguntas.php:52 ../emprendedores-preguntas.php:53
 msgid "Pariente sección"
-msgstr ""
+msgstr "Atalako ahaidea"
 
 #: ../emprendedores-preguntas.php:54
 msgid "Editar sección"
-msgstr ""
+msgstr "Atala editatu"
 
 #: ../emprendedores-preguntas.php:55
 msgid "Actualizar sección"
-msgstr ""
+msgstr "Eguneratu atala"
 
 #: ../emprendedores-preguntas.php:56
 msgid "Añadir sección"
-msgstr ""
+msgstr "Gehitu atala"
 
 #: ../emprendedores-preguntas.php:57
 msgid "Nueva sección"
-msgstr ""
+msgstr "Atal berria"
 
 #: ../emprendedores-preguntas.php:78
 msgid "Texto resumen PDF"
-msgstr ""
+msgstr "PDF laburpen-testua"
 
 #: ../emprendedores-preguntas.php:84
 msgid "Enlaces resumen PDF"
-msgstr ""
+msgstr "PDF laburpen-estekak"
 
 #: ../emprendedores-preguntas.php:116
 msgid "Respuesta A"
-msgstr ""
+msgstr "A erantzuna"
 
 #: ../emprendedores-preguntas.php:117
 msgid "Texto respuesta A"
-msgstr ""
+msgstr "A erantzunaren testua"
 
 #: ../emprendedores-preguntas.php:118
 msgid "Valor respuesta A"
-msgstr ""
+msgstr "A erantzunaren balioa"
 
 #: ../emprendedores-preguntas.php:123
 msgid "Respuesta B"
-msgstr ""
+msgstr "B erantzuna"
 
 #: ../emprendedores-preguntas.php:124
 msgid "Texto respuesta B"
-msgstr ""
+msgstr "B erantzunaren testua"
 
 #: ../emprendedores-preguntas.php:125
 msgid "Valor respuesta B"
-msgstr ""
+msgstr "B erantzunaren balioa"
 
 #: ../emprendedores-preguntas.php:130
 msgid "Respuesta C"
-msgstr ""
+msgstr "C erantzuna"
 
 #: ../emprendedores-preguntas.php:131
 msgid "Texto respuesta C"
-msgstr ""
+msgstr "C erantzunaren testua"
 
 #: ../emprendedores-preguntas.php:132
 msgid "Valor respuesta C"
-msgstr ""
+msgstr "C erantzunaren balioa"
 
 #: ../emprendedores-preguntas.php:144 ../emprendedores-preguntas.php:156
 msgid "Respuestas"
-msgstr ""
+msgstr "Erantzunak"
 
 #: ../emprendedores-preguntas.php:192
 msgid "Mostrar todas las secciones"
-msgstr ""
+msgstr "Erakutsi atal guztiak"
 
 #: ../wp-ekilan.php:75
 #, php-format
@@ -313,11 +315,11 @@ msgstr ""
 #: ../wp-ekilan.php:95
 msgid ""
 "Aquí tienes tu informe de \"Autodiagnóstico en competencias emprendedoras\""
-msgstr ""
+msgstr "Hemen duzu \"Autodiagnostikoa ekintzailetza-gaitasunetan\" txostena"
 
 #: ../wp-ekilan.php:108
 msgid "Eskerrik asko! Gracias por completar el formulario."
-msgstr ""
+msgstr "Eskerrik asko inprimakia betetzeagatik."
 
 #: ../wp-ekilan.php:110
 msgid ""
@@ -327,10 +329,15 @@ msgid ""
 "documentos en formato PDF). Puede descargarlo en: <a href='https://get.adobe."
 "com/es/reader/' target='_blank'>https://get.adobe.com/es/reader/</a>."
 msgstr ""
+"Zure nabigatzailean, ordenagailu-aplikazioan, tabletean, gailu mugikorrean "
+"eta abarretan txostena behar bezala ikusten ez baduzu, Adobe Acrobat Reader "
+"programa instalatzea gomendatzen dizugu (PDF formatuko dokumentuak ikusteko "
+"doako softwarea). Hemen deskarga dezakezu: <a href='https://get.adobe.com/es/"
+"reader/' target='_blank'>https://get.adobe.com/es/reader/</a>."
 
 #: ../wp-ekilan.php:267
 msgid "Datos personales"
-msgstr ""
+msgstr "Datu pertsonalak"
 
 #: ../wp-ekilan.php:268
 msgid "Nombre"
@@ -349,6 +356,8 @@ msgid ""
 "Recuerda revisar el email porque será a donde mandemos el informe con tus "
 "resultados."
 msgstr ""
+"Gogoratu emaila berrikusi behar duzula, hartara bidaliko baitugu txostena "
+"zure emaitzekin."
 
 #: ../wp-ekilan.php:282
 msgid "Continuar"
@@ -360,7 +369,7 @@ msgstr "Bidali"
 
 #: ../wp-ekilan.php:464
 msgid "cuestionario-autodiagnostico-competencias-emprendedoras"
-msgstr ""
+msgstr "galdeketa-autodiagnostikoa-gaitasunak-ekintzailetza"
 
 #: ../wp-ekilan.php:469
 msgid ""
@@ -368,6 +377,8 @@ msgid ""
 "Competencias de Emprendimiento (EntreComp), te damos la enhorabuena por los "
 "resultados:"
 msgstr ""
+"Lortutako erantzunen arabera, Ekintzailetzako Eskumenen Europako Markoaren "
+"arabera (EntreComp), zorionak ematen dizkizugu emaitzengatik:"
 
 #: ../wp-ekilan.php:470
 msgid ""
@@ -375,6 +386,9 @@ msgid ""
 "Competencias de Emprendimiento (EntreComp), puedes mejorar las habilidades "
 "medidas en los cuatro grupos principales:"
 msgstr ""
+"Jasotako erantzunen arabera, Ekintzailetzako Konpetentzien Europako "
+"Esparruaren arabera (EntreComp), lau talde nagusietan neurtutako "
+"trebetasunak hobetu ditzakezu:"
 
 #: ../wp-ekilan.php:471
 msgid ""
@@ -382,6 +396,9 @@ msgid ""
 "Competencias de Emprendimiento (EntreComp), recomendamos que mejores las "
 "habilidades medidas en los cuatro grupos principales:"
 msgstr ""
+"Jasotako erantzunen arabera, Ekintzailetzako Konpetentzien Europako "
+"Markoaren (EntreComp) arabera, lau talde nagusietan neurtutako trebetasunak "
+"hobetzea gomendatzen dugu:"
 
 #: ../wp-ekilan.php:475
 msgid ""
@@ -389,6 +406,8 @@ msgid ""
 "oportunidades. Sácale todo el potencial que puedas a este conjunto de "
 "habilidades."
 msgstr ""
+"Zorionak, ideia eta aukerei dagokienez, ekiteko dituzun trebetasunengatik. "
+"Atera iezaiozu ahal duzun guztia trebetasun-multzo horri."
 
 #: ../wp-ekilan.php:476
 msgid ""
@@ -396,6 +415,8 @@ msgid ""
 "puedes mejorar tus habilidades emprendedoras en la parte de ideas y "
 "oportunidades."
 msgstr ""
+"Lehenengo galdera-multzoan lortutako emaitzen arabera, zure ekintzailetza-"
+"trebetasunak hobetu ditzakezu ideien eta aukeren zatian."
 
 #: ../wp-ekilan.php:477
 msgid ""
@@ -403,18 +424,24 @@ msgid ""
 "recomendamos que mejores tus habilidades emprendedoras en la parte de ideas "
 "y oportunidades."
 msgstr ""
+"Lehenengo galdera-multzoan lortutako emaitzen arabera, zure ekintzailetza-"
+"trebetasunak ideien eta aukeren zatian hobetzea gomendatzen dugu."
 
 #: ../wp-ekilan.php:481
 msgid ""
 "Enhorabuena por tus habilidades emprendedoras en el segundo grupo de "
 "respuestas, en del área de recursos."
 msgstr ""
+"Zorionak zure ekintzailetza-trebetasunengatik bigarren erantzun-multzoan, "
+"baliabideen arloan."
 
 #: ../wp-ekilan.php:482
 msgid ""
 "En el segundo grupo de habilidades emprendedoras en el área de recursos "
 "tienes un potencial que con experiencia y formación seguro que vas a mejorar."
 msgstr ""
+"En el segundo grupo de habilidades emprendedoras en el área de recursos "
+"tienes un potencial que con experiencia y formación seguro que vas a mejorar."
 
 #: ../wp-ekilan.php:483
 msgid ""
@@ -422,6 +449,8 @@ msgid ""
 "recomendamos que mejores tus habilidades emprendedoras en la parte de "
 "recursos."
 msgstr ""
+"Bigarren galdera-multzoan lortutako emaitzen arabera, baliabideen atalean "
+"zure ekintzailetza-trebetasunak hobetzea gomendatzen dugu."
 
 #: ../wp-ekilan.php:487
 msgid ""
@@ -429,6 +458,8 @@ msgid ""
 "minimizando riesgos. Sácale todo el potencial que puedas a este conjunto de "
 "habilidades."
 msgstr ""
+"Zorionak ekintzarako dituzun trebetasunengatik, arriskuak minimizatuz. Atera "
+"iezaiozu ahal duzun guztia trebetasun-multzo horri."
 
 #: ../wp-ekilan.php:488
 msgid ""
@@ -436,6 +467,9 @@ msgid ""
 "minimizando riesgos, tienes un potencial que con experiencia y formación "
 "puedes mejorar."
 msgstr ""
+"Ekintzailetza-trebetasunen hirugarren taldean, ekintzara pasatzeko, "
+"arriskuak minimizatuz, esperientziarekin eta prestakuntzarekin hobetu "
+"dezakezun potentzial bat duzu."
 
 #: ../wp-ekilan.php:489
 msgid ""
@@ -443,6 +477,9 @@ msgid ""
 "recomendamos que mejores tus habilidades emprendedoras para pasar a la "
 "acción, minimizando riesgos."
 msgstr ""
+"Hirugarren galdera-multzoan lortutako emaitzen arabera, ekintzara pasatzeko "
+"zure ekintzailetza-trebetasunak hobetzea gomendatzen dugu, arriskuak "
+"minimizatuz."
 
 #: ../wp-ekilan.php:493
 msgid ""
@@ -450,22 +487,29 @@ msgid ""
 "potencial que puedas a este conjunto de habilidades y mucho ánimo con tus "
 "proyectos colaborativos."
 msgstr ""
+"Zorionak taldean ekiteko dituzun trebetasunengatik. Atera iezaiozu ahal "
+"duzun guztia trebetasun-multzo horri, eta animo handia eman zure lankidetza-"
+"proiektuei."
 
 #: ../wp-ekilan.php:494
 msgid ""
 "En el cuarto grupo de habilidades relacionadas con la predisposición para "
 "emprendimiento colectivo, tienes un potencial interesante que puedes mejorar."
 msgstr ""
+"Ekintzailetza kolektiborako aldez aurreko jarrerarekin lotutako trebetasunen "
+"laugarren taldean, hobetu dezakezun potentzial interesgarria duzu."
 
 #: ../wp-ekilan.php:495
 msgid ""
 "Tus habilidades emprendedoras en la parte de predisposición para "
 "emprendimiento colectivo se pueden mejorar. ¡Ánimo con ello!"
 msgstr ""
+"Ekintzailetza kolektiborako aldez aurreko jarreran dituzun gaitasun "
+"ekintzaileak hobetu egin daitezke. Animo!"
 
 #: ../wp-ekilan.php:528 ../wp-ekilan.php:613
 msgid "Cuestionario de \"Autodiagnóstico en competencias emprendedoras\""
-msgstr ""
+msgstr "\"Ekintzailetza-gaitasunen autodiagnostikoa\" galdera-sorta"
 
 #: ../wp-ekilan.php:529
 msgid ""
@@ -474,18 +518,25 @@ msgid ""
 "(EntreComp), mostramos las respuestas que has elegido y un pequeño resumen "
 "de la información basada en el ámbito del emprendimiento en Europa."
 msgstr ""
+"Ekintzailetza-gaitasunen Europako esparruan (EntreComp) oinarritutako "
+"ekiteko gaitasunen autodiagnostiko-testa bete ondoren, aukeratu dituzun "
+"erantzunak eta Europako ekintzailetzaren esparruan oinarritutako "
+"informazioaren laburpen txiki bat erakutsiko ditugu."
 
 #: ../wp-ekilan.php:587
 msgid ""
 "Conclusiones del cuestionario de \"Autodiagnóstico en competencias "
 "emprendedoras\":"
 msgstr ""
+"\"Autodiagnostikoa ekintzailetza-gaitasunetan\" galdera-sortaren ondorioak:"
 
 #: ../wp-ekilan.php:588
 msgid ""
 "Este informe presenta el perfil como persona emprendedora en base a las "
 "respuestas al cuestionario de autodiagnóstico online cumplimentado."
 msgstr ""
+"Txosten honek ekintzaile-profila aurkezten du, betetako online "
+"autodiagnostikoko galdesortaren erantzunen arabera."
 
 #: ../wp-ekilan.php:589
 msgid ""
@@ -493,12 +544,16 @@ msgid ""
 "oportunidades, recursos, habilidades y predisposición para emprender de "
 "forma individual o en equipo."
 msgstr ""
+"Ekintzailetza-gaitasunak ideiak, aukerak, baliabideak, trebetasunak eta "
+"ekiteko aldez aurreko jarrera banaka edo taldean aztertzeari dagozkio."
 
 #: ../wp-ekilan.php:590
 msgid ""
 "Este perfil emprendedor se basa en la estructura del Marco Europeo de "
 "Competencias de Emprendimiento (EntreComp)."
 msgstr ""
+"Ekintzailetza-profil hori Ekintzailetzako Konpetentzien Europako Esparruaren "
+"(EntreComp) egituran oinarritzen da."
 
 #: ../wp-ekilan.php:608
 msgid ""
@@ -508,10 +563,14 @@ msgid ""
 "entidades que colaboran en este informe facilitan para completar y mejorar "
 "las aptitudes emprendedoras."
 msgstr ""
+"Profil hau Ekintzailetzako Konpetentzien Europako Esparruan (EntreComp) "
+"emandako erantzunen laburpena da. Erantzun horiek txosten honetan parte "
+"hartzen duten erakundeek ekintzailetza-gaitasunak osatzeko eta hobetzeko "
+"ematen duten dokumentazio osagarriarekin alderatzea gomendatzen dugu."
 
 #: ../wp-ekilan.php:609
 msgid "Gracias por participar."
-msgstr ""
+msgstr "Eskerrik asko parte hartzeagatik."
 
 #, php-format
 #~ msgid ""

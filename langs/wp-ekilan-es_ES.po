@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: azti-descargas\n"
-"POT-Creation-Date: 2024-07-18 14:31+0200\n"
-"PO-Revision-Date: 2024-07-18 14:31+0200\n"
+"POT-Creation-Date: 2024-09-30 13:37+0200\n"
+"PO-Revision-Date: 2024-09-30 13:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: jorge@enutt.net\n"
 "Language: eu\n"
@@ -26,28 +26,98 @@ msgid ""
 "emprendedoras"
 msgstr ""
 
-#: ../admin.php:13
-msgid "Exportar a CSV"
-msgstr ""
-
-#: ../admin.php:15
+#: ../admin.php:16
 msgid "Datos guardados correctamente."
 msgstr ""
 
-#: ../admin.php:22
+#: ../admin.php:29
+msgid "Access token refrescado."
+msgstr ""
+
+#: ../admin.php:33
 msgid "Emails a los que avisar de la descarga"
 msgstr ""
 
-#: ../admin.php:22
+#: ../admin.php:33
 msgid "Separados por comas"
 msgstr ""
 
-#: ../admin.php:25
+#: ../admin.php:36
 msgid "Aviso legal"
 msgstr ""
 
-#: ../admin.php:29
+#: ../admin.php:40
+msgid "Conexión a ZohoCRM"
+msgstr ""
+
+#: ../admin.php:41
+msgid "Client ID"
+msgstr ""
+
+#: ../admin.php:43
+msgid "Client Secret"
+msgstr ""
+
+#: ../admin.php:45
+msgid "Redirect URL"
+msgstr ""
+
+#: ../admin.php:47 ../admin.php:61
+msgid "Scope"
+msgstr ""
+
+#: ../admin.php:49
 msgid "Guardar"
+msgstr ""
+
+#: ../admin.php:52
+msgid "SOLICITAR TOKEN a ZohoCRM"
+msgstr ""
+
+#: ../admin.php:53
+msgid "Solicitar token"
+msgstr ""
+
+#: ../admin.php:54
+msgid "DATOS DE CONEXIÓN ZohoCRM"
+msgstr ""
+
+#: ../admin.php:55
+msgid "Token"
+msgstr ""
+
+#: ../admin.php:56
+msgid "Location"
+msgstr ""
+
+#: ../admin.php:57
+msgid "Account-server"
+msgstr ""
+
+#: ../admin.php:59
+msgid "Access_token"
+msgstr ""
+
+#: ../admin.php:60
+msgid "Refresh_token"
+msgstr ""
+
+#: ../admin.php:62
+msgid "API_domain"
+msgstr ""
+
+#: ../admin.php:63
+msgid "Token_type"
+msgstr ""
+
+#: ../admin.php:66
+msgid "TEST CONEXIÓN"
+msgstr ""
+
+#: ../admin.php:67
+msgid ""
+"Debería verse el listado de los 3 últimos posibles clietnes insertados en "
+"ZohoCRM."
 msgstr ""
 
 #: ../custom_posts.php:28 ../custom_posts.php:167
@@ -103,7 +173,7 @@ msgid "Ver pregunta"
 msgstr ""
 
 #: ../emprendedores-preguntas.php:16
-msgid "Buscar preguntass"
+msgid "Buscar preguntas"
 msgstr ""
 
 #: ../emprendedores-preguntas.php:17
@@ -122,7 +192,7 @@ msgstr ""
 msgid "Secciones"
 msgstr ""
 
-#: ../emprendedores-preguntas.php:49 ../emprendedores-preguntas.php:154
+#: ../emprendedores-preguntas.php:49 ../emprendedores-preguntas.php:155
 msgid "Sección"
 msgstr ""
 
@@ -167,6 +237,10 @@ msgid "Respuesta A"
 msgstr ""
 
 #: ../emprendedores-preguntas.php:117
+msgid "Texto respuesta A"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:118
 msgid "Valor respuesta A"
 msgstr ""
 
@@ -175,6 +249,10 @@ msgid "Respuesta B"
 msgstr ""
 
 #: ../emprendedores-preguntas.php:124
+msgid "Texto respuesta B"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:125
 msgid "Valor respuesta B"
 msgstr ""
 
@@ -183,26 +261,65 @@ msgid "Respuesta C"
 msgstr ""
 
 #: ../emprendedores-preguntas.php:131
+msgid "Texto respuesta C"
+msgstr ""
+
+#: ../emprendedores-preguntas.php:132
 msgid "Valor respuesta C"
 msgstr ""
 
-#: ../emprendedores-preguntas.php:143
+#: ../emprendedores-preguntas.php:144 ../emprendedores-preguntas.php:156
 msgid "Respuestas"
 msgstr ""
 
-#: ../emprendedores-preguntas.php:183
+#: ../emprendedores-preguntas.php:192
 msgid "Mostrar todas las secciones"
 msgstr ""
 
-#: ../wp-emprendedores.php:50
+#: ../wp-ekilan.php:75
+#, php-format
+msgid ""
+"<table border=\"0\" width=\"600\" cellpadding=\"10\" align=\"center\" "
+"bgcolor=\"ffffff\">\n"
+"\t\t\t\t\t<tbody>\n"
+"\t\t\t\t\t<tr><td><img src=\"%simages/logos.jpg\" alt=\"\" width=\"600\"></"
+"td></tr>\n"
+"\t\t\t\t\t<tr>\n"
+"\t\t\t\t\t<td><span style=\"font-family: Arial; font-size: medium;\">Hola,</"
+"span></td>\n"
+"\t\t\t\t\t</tr>\n"
+"\t\t\t\t\t<tr>\n"
+"\t\t\t\t\t<td><span style=\"font-family: Arial; font-size: medium;\">Aquí "
+"tienes tu informe de \"Autodiagnóstico en competencias emprendedoras\".</"
+"span></td>\n"
+"\t\t\t\t\t</tr>\n"
+"\t\t\t\t\t<tr>\n"
+"\t\t\t\t\t<td><span style=\"font-family: Arial; font-size: medium;\">Muchas "
+"gracias.</span></td>\n"
+"\t\t\t\t\t</tr>\n"
+"\t\t\t\t\t<tr>\n"
+"\t\t\t\t\t<td><span style=\"font-family: Arial; font-size: medium;\">Un "
+"saludo</span></td>\n"
+"\t\t\t\t\t</tr>\n"
+"\t\t\t\t\t<tr>\n"
+"\t\t\t\t\t<td align=\"center\"><span style=\"font-family: Arial; font-size: "
+"medium;\"><a style=\"color: #000;\" href=\"https://ekilan.asle.es/\">ekilan."
+"asle.es</a></span></td>\n"
+"\t\t\t\t\t</tr>\n"
+"\t\t\t\t\t</tbody>\n"
+"\t\t\t\t\t</table>"
+msgstr ""
+
+#: ../wp-ekilan.php:95
+msgid ""
+"Aquí tienes tu informe de \"Autodiagnóstico en competencias emprendedoras\""
+msgstr ""
+
+#: ../wp-ekilan.php:108
 msgid "Eskerrik asko! Gracias por completar el formulario."
 msgstr ""
 
-#: ../wp-emprendedores.php:72
-msgid "Descargar informe"
-msgstr ""
-
-#: ../wp-emprendedores.php:73
+#: ../wp-ekilan.php:110
 msgid ""
 "Si no visualiza correctamente el informe en formato PDF en su navegador, "
 "aplicación de ordenador, tablet, dispositivo móvil, etc., recomendamos que "
@@ -211,139 +328,146 @@ msgid ""
 "com/es/reader/' target='_blank'>https://get.adobe.com/es/reader/</a>."
 msgstr ""
 
-#: ../wp-emprendedores.php:75
-msgid ""
-"<table border=\"0\" width=\"600\" cellpadding=\"10\" align=\"center\" "
-"bgcolor=\"ffffff\">\n"
-"\t\t\t\t<tbody>\n"
-"\t\t\t\t<tr><td><img src=\""
+#: ../wp-ekilan.php:267
+msgid "Datos personales"
 msgstr ""
 
-#: ../wp-emprendedores.php:99
-msgid ""
-"Aquí tienes tu informe de \"Autodiagnóstico en competencias emprendedoras\""
+#: ../wp-ekilan.php:268
+msgid "Nombre"
 msgstr ""
 
-#: ../wp-emprendedores.php:153
-msgid ""
-"Si quieres que te enviemos el informe por email, rellena este campo con tu "
-"email."
+#: ../wp-ekilan.php:270
+msgid "Apellidos"
 msgstr ""
 
-#: ../wp-emprendedores.php:163
+#: ../wp-ekilan.php:272
+msgid "Email"
+msgstr ""
+
+#: ../wp-ekilan.php:274
+msgid ""
+"Recuerda revisar el email porque será a donde mandemos el informe con tus "
+"resultados."
+msgstr ""
+
+#: ../wp-ekilan.php:282
 msgid "Continuar"
 msgstr ""
 
-#: ../wp-emprendedores.php:163
+#: ../wp-ekilan.php:282
 msgid "Enviar"
 msgstr ""
 
-#: ../wp-emprendedores.php:341
+#: ../wp-ekilan.php:464
+msgid "cuestionario-autodiagnostico-competencias-emprendedoras"
+msgstr ""
+
+#: ../wp-ekilan.php:469
 msgid ""
 "En función de las respuestas obtenidas, de acuerdo al Marco Europeo de "
 "Competencias de Emprendimiento (EntreComp), te damos la enhorabuena por los "
 "resultados:"
 msgstr ""
 
-#: ../wp-emprendedores.php:342
+#: ../wp-ekilan.php:470
 msgid ""
 "En función de las respuestas obtenidas, de acuerdo al Marco Europeo de "
 "Competencias de Emprendimiento (EntreComp), puedes mejorar las habilidades "
 "medidas en los cuatro grupos principales:"
 msgstr ""
 
-#: ../wp-emprendedores.php:343
+#: ../wp-ekilan.php:471
 msgid ""
 "En función de las respuestas obtenidas, de acuerdo al Marco Europeo de "
 "Competencias de Emprendimiento (EntreComp), recomendamos que mejores las "
 "habilidades medidas en los cuatro grupos principales:"
 msgstr ""
 
-#: ../wp-emprendedores.php:347
+#: ../wp-ekilan.php:475
 msgid ""
 "Enhorabuena por tus habilidades emprendedoras en la parte de ideas y "
 "oportunidades. Sácale todo el potencial que puedas a este conjunto de "
 "habilidades."
 msgstr ""
 
-#: ../wp-emprendedores.php:348
+#: ../wp-ekilan.php:476
 msgid ""
 "De acuerdo a los resultados obtenidos en el primer grupo de preguntas, "
 "puedes mejorar tus habilidades emprendedoras en la parte de ideas y "
 "oportunidades."
 msgstr ""
 
-#: ../wp-emprendedores.php:349
+#: ../wp-ekilan.php:477
 msgid ""
 "De acuerdo a los resultados obtenidos en el primer grupo de preguntas, "
 "recomendamos que mejores tus habilidades emprendedoras en la parte de ideas "
 "y oportunidades."
 msgstr ""
 
-#: ../wp-emprendedores.php:353
+#: ../wp-ekilan.php:481
 msgid ""
 "Enhorabuena por tus habilidades emprendedoras en el segundo grupo de "
 "respuestas, en del área de recursos."
 msgstr ""
 
-#: ../wp-emprendedores.php:354
+#: ../wp-ekilan.php:482
 msgid ""
 "En el segundo grupo de habilidades emprendedoras en el área de recursos "
 "tienes un potencial que con experiencia y formación seguro que vas a mejorar."
 msgstr ""
 
-#: ../wp-emprendedores.php:355
+#: ../wp-ekilan.php:483
 msgid ""
 "De acuerdo a los resultados obtenidos en el segundo grupo de preguntas, "
 "recomendamos que mejores tus habilidades emprendedoras en la parte de "
 "recursos."
 msgstr ""
 
-#: ../wp-emprendedores.php:359
+#: ../wp-ekilan.php:487
 msgid ""
 "Enhorabuena por tus habilidades emprendedoras para pasar a la acción, "
 "minimizando riesgos. Sácale todo el potencial que puedas a este conjunto de "
 "habilidades."
 msgstr ""
 
-#: ../wp-emprendedores.php:360
+#: ../wp-ekilan.php:488
 msgid ""
 "En el tercer grupo de habilidades emprendedoras para pasar a la acción, "
 "minimizando riesgos, tienes un potencial que con experiencia y formación "
 "puedes mejorar."
 msgstr ""
 
-#: ../wp-emprendedores.php:361
+#: ../wp-ekilan.php:489
 msgid ""
 "De acuerdo a los resultados obtenidos en el tercer grupo de preguntas, "
 "recomendamos que mejores tus habilidades emprendedoras para pasar a la "
 "acción, minimizando riesgos."
 msgstr ""
 
-#: ../wp-emprendedores.php:365
+#: ../wp-ekilan.php:493
 msgid ""
 "Enhorabuena por tus habilidades para emprender en equipo. Sácale todo el "
 "potencial que puedas a este conjunto de habilidades y mucho ánimo con tus "
 "proyectos colaborativos."
 msgstr ""
 
-#: ../wp-emprendedores.php:366
+#: ../wp-ekilan.php:494
 msgid ""
 "En el cuarto grupo de habilidades relacionadas con la predisposición para "
 "emprendimiento colectivo, tienes un potencial interesante que puedes mejorar."
 msgstr ""
 
-#: ../wp-emprendedores.php:367
+#: ../wp-ekilan.php:495
 msgid ""
 "Tus habilidades emprendedoras en la parte de predisposición para "
 "emprendimiento colectivo se pueden mejorar. ¡Ánimo con ello!"
 msgstr ""
 
-#: ../wp-emprendedores.php:400 ../wp-emprendedores.php:485
+#: ../wp-ekilan.php:528 ../wp-ekilan.php:613
 msgid "Cuestionario de \"Autodiagnóstico en competencias emprendedoras\""
 msgstr ""
 
-#: ../wp-emprendedores.php:401
+#: ../wp-ekilan.php:529
 msgid ""
 "Una vez cumplimentado el test de autodiagnóstico de competencias para "
 "emprender basado en el marco europeo de competencias de emprendimiento "
@@ -351,32 +475,32 @@ msgid ""
 "de la información basada en el ámbito del emprendimiento en Europa."
 msgstr ""
 
-#: ../wp-emprendedores.php:459
+#: ../wp-ekilan.php:587
 msgid ""
 "Conclusiones del cuestionario de \"Autodiagnóstico en competencias "
 "emprendedoras\":"
 msgstr ""
 
-#: ../wp-emprendedores.php:460
+#: ../wp-ekilan.php:588
 msgid ""
 "Este informe presenta el perfil como persona emprendedora en base a las "
 "respuestas al cuestionario de autodiagnóstico online cumplimentado."
 msgstr ""
 
-#: ../wp-emprendedores.php:461
+#: ../wp-ekilan.php:589
 msgid ""
 "Las competencias emprendedoras se refieren a los análisis de ideas, "
 "oportunidades, recursos, habilidades y predisposición para emprender de "
 "forma individual o en equipo."
 msgstr ""
 
-#: ../wp-emprendedores.php:462
+#: ../wp-ekilan.php:590
 msgid ""
 "Este perfil emprendedor se basa en la estructura del Marco Europeo de "
 "Competencias de Emprendimiento (EntreComp)."
 msgstr ""
 
-#: ../wp-emprendedores.php:480
+#: ../wp-ekilan.php:608
 msgid ""
 "Este perfil es el resumen del conjunto de respuestas aportadas dentro del "
 "Marco Europeo de Competencias de Emprendimiento (EntreComp). Recomendamos "
@@ -385,7 +509,7 @@ msgid ""
 "las aptitudes emprendedoras."
 msgstr ""
 
-#: ../wp-emprendedores.php:481
+#: ../wp-ekilan.php:609
 msgid "Gracias por participar."
 msgstr ""
 
@@ -403,15 +527,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Robota zaren ala ez erabakitzeko arazoak daude. Mesedez, saiatu denbora "
 #~ "tarte batean."
-
-#~ msgid "Nombre"
-#~ msgstr "Izena"
-
-#~ msgid "Apellido"
-#~ msgstr "Abizena"
-
-#~ msgid "Email"
-#~ msgstr "Emaila"
 
 #~ msgid "Empresa"
 #~ msgstr "Enpresa"
@@ -437,6 +552,3 @@ msgstr ""
 
 #~ msgid "Acepto recibir por email comunicaciones de AZTI."
 #~ msgstr "Onartzen dut posta elektronikoz jasotzea AZTIren komunikazioak."
-
-#~ msgid "Solicitar"
-#~ msgstr "Eskatu"

@@ -13,7 +13,7 @@ function emprendedores_preguntas_create_post_type() {
 		'new_item'           => __( 'Nueva pregunta', 'wp-ekilan' ),
 		'all_items'          => __( 'Todas las preguntas', 'wp-ekilan' ),
 		'view_item'          => __( 'Ver pregunta', 'wp-ekilan' ),
-		'search_items'       => __( 'Buscar preguntass', 'wp-ekilan' ),
+		'search_items'       => __( 'Buscar preguntas', 'wp-ekilan' ),
 		'not_found'          => __( 'Pregunta no encontrada', 'wp-ekilan' ),
 		'not_found_in_trash' => __( 'Pregunta no encontrada en la papelera', 'wp-ekilan' ),
 		'menu_name'          => __( 'Preguntas Autodiagnóstico', 'wp-ekilan' ),

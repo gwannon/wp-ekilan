@@ -273,7 +273,7 @@ function wp_ekilan_shortcode($params = array(), $content = null) {
 							<input type="email" name="email" placeholder='email@dominio.com' value='' required></label><br/>
 							<p><?php _e("Recuerda revisar el email porque será a donde mandemos el informe con tus resultados.", 'wp-ekilan'); ?></p>
 							<div class="legal">
-								<?php echo get_option("_wp_ekilan_aviso_legal_".$current_lang); ?>
+								<?php echo stripslashes(get_option("_wp_ekilan_aviso_legal_".$current_lang)); ?>
 							</div>
 						<?php } ?>
 						<input type="hidden" name="responses" value='<?=json_encode($responses);?>'>
