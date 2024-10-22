@@ -15,7 +15,7 @@
  */
 
 define("DEBUG_ECHO", false);
-define("DEBUG_EMAIL", true);
+define("DEBUG_EMAIL", false);
 
 /* ----------- Multi-idioma ------------------ */
 function wp_ekilan_plugins_loaded() {
